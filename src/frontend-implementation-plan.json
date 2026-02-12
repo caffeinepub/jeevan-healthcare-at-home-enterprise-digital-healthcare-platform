@@ -1,0 +1,44 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Site-wide brand color update: Jeevan green/teal → Medical Blue",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace Jeevan green/teal brand accents with Medical Blue across light and dark themes site-wide.",
+      "acceptanceCriteria": [
+        "All UI elements that previously rendered in the Jeevan teal/green (including `--jeevan-teal`, `--secondary`, and `--accent`) now render in Medical Blue in light mode.",
+        "All UI elements that previously rendered in the Jeevan teal/green now render in Medical Blue in dark mode.",
+        "There are no remaining noticeable green/teal accents in buttons, badges, icons, links hover states, or highlights across public pages and admin/doctor/phlebotomist sections."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update the global CSS theme variables so `--jeevan-teal` is set to Medical Blue (matching the intended brand blue) in both `:root` and `.dark`, ensuring all usages of `text-jeevan-teal`, `bg-jeevan-teal`, `border-jeevan-teal`, and `hover:*jeevan-teal*` render as Medical Blue without changing any read-only UI components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Update Tailwind-linked theme tokens (secondary/accent/chart colors) so utilities and charts no longer resolve to green/teal while preserving contrast/accessibility.",
+      "acceptanceCriteria": [
+        "`frontend/src/index.css` theme variables are updated so secondary/accent and any chart colors that referenced the green/teal value no longer resolve to green.",
+        "All existing Tailwind classes (e.g., `text-jeevan-teal`, `bg-jeevan-teal`, `hover:text-jeevan-teal`, `hover:bg-jeevan-teal`) now visually display as Medical Blue without needing to edit immutable UI component sources.",
+        "No contrast/accessibility regressions are introduced (text remains readable on Medical Blue backgrounds and hover states)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Change Tailwind-consumed tokens that currently use teal/green to Medical Blue: update `--secondary`, `--accent`, and any chart variables that reference teal/green (e.g., `--chart-2`, `--chart-4`) in both light and dark mode blocks; validate foreground tokens (`--secondary-foreground`, `--accent-foreground`) keep readable contrast after the color swap."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Confirm Tailwind color mappings remain consistent with the updated CSS variables (secondary/accent/chart and `jeevan-teal` all resolve via `oklch(var(--...))`); make any minimal adjustments needed so existing utility classes continue to point to the updated variables (no refactors of UI component sources)."
+        }
+      ]
+    }
+  ]
+}

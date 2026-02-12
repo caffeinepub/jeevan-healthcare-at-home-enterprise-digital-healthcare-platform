@@ -1,2 +1,3 @@
-# jeevan-healthcare-at-home-enterprise-digital-healthcare-platform
-Exported from Caffeine project: Jeevan HealthCare at Home
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

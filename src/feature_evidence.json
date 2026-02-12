@@ -1,0 +1,53 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-global-theme-so-that-any-ui-currently-using-the-jeevan-green-teal-brand-color-is-rendered-in-medical-blue-instead-across-all-pages-and-dashboards",
+      "featureTitle": "Update the global theme so that any UI currently using the Jeevan green/teal brand color is rendered in Medical Blue instead, across all pages and dashboards.",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-tailwind-theme-tokens-and-utilities-remain-consistent-after-the-color-change-by-updating-the-css-variables-used-by-tailwind-e-g-secondary-accent-related-chart-tokens-so-charts-badges-status-elements-no-longer-use-green",
+      "featureTitle": "Ensure Tailwind theme tokens and utilities remain consistent after the color change by updating the CSS variables used by Tailwind (e.g., `--secondary`, `--accent`, related chart tokens) so charts/badges/status elements no longer use green.",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

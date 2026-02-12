@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Jeevan HealthCare at Home platform with live booking flows, doctor/admin dashboards, CRM integration, test catalog, and health packages.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-update-the-global-theme-so-that-any-ui-currently-using-the-jeevan-green-teal-brand-color-is-rendered-in-medical-blue-instead-across-all-pages-and-dashboards",
+      "title": "Update the global theme so that any UI currently using the Jeevan green/teal brand color is rendered in Medical Blue instead, across all pages and dashboards.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-tailwind-theme-tokens-and-utilities-remain-consistent-after-the-color-change-by-updating-the-css-variables-used-by-tailwind-e-g-secondary-accent-related-chart-tokens-so-charts-badges-status-elements-no-longer-use-green",
+      "title": "Ensure Tailwind theme tokens and utilities remain consistent after the color change by updating the CSS variables used by Tailwind (e.g., `--secondary`, `--accent`, related chart tokens) so charts/badges/status elements no longer use green.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update platform theme: change green UI color to Medical Blue (site-wide branding update).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Jeevan HealthCare at Home",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
