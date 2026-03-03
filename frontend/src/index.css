@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        
+        /* Jeevan Brand Colors - Light Mode */
+        --jeevan-primary: 0.50 0.20 252;          /* Deep Blue #0B5ED7 */
+        --jeevan-teal: 0.65 0.15 240;             /* Medical Blue */
+        --jeevan-light-blue: 0.95 0.05 252;       /* Light Blue #E7F1FF */
+        --jeevan-soft-grey: 0.97 0.01 252;        /* Soft Grey #F5F7FA */
+        --jeevan-text: 0.18 0.01 0;               /* Dark Grey #2E2E2E */
+        
+        /* Base colors */
+        --background: 1 0 0;                       /* White */
+        --foreground: 0.18 0.01 0;                 /* Dark text */
+        
+        /* Card colors */
+        --card: 1 0 0;
+        --card-foreground: 0.18 0.01 0;
+        
+        /* Popover colors */
+        --popover: 1 0 0;
+        --popover-foreground: 0.18 0.01 0;
+        
+        /* Primary - Deep Blue */
+        --primary: 0.50 0.20 252;
+        --primary-foreground: 1 0 0;
+        
+        /* Secondary - Medical Blue */
+        --secondary: 0.65 0.15 240;
+        --secondary-foreground: 1 0 0;
+        
+        /* Muted */
+        --muted: 0.97 0.01 252;
+        --muted-foreground: 0.50 0.01 0;
+        
+        /* Accent - Medical Blue */
+        --accent: 0.65 0.15 240;
+        --accent-foreground: 1 0 0;
+        
+        /* Destructive */
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 1 0 0;
+        
+        /* Border */
+        --border: 0.90 0.01 0;
+        --input: 0.90 0.01 0;
+        --ring: 0.50 0.20 252;
+        
+        /* Chart colors */
+        --chart-1: 0.50 0.20 252;
+        --chart-2: 0.65 0.15 240;
+        --chart-3: 0.60 0.16 252;
+        --chart-4: 0.70 0.13 240;
+        --chart-5: 0.45 0.22 252;
+    }
+
+    .dark {
+        --background: 0.15 0.01 0;
+        --foreground: 0.98 0 0;
+        
+        --card: 0.20 0.01 0;
+        --card-foreground: 0.98 0 0;
+        
+        --popover: 0.20 0.01 0;
+        --popover-foreground: 0.98 0 0;
+        
+        --primary: 0.55 0.18 252;
+        --primary-foreground: 1 0 0;
+        
+        --secondary: 0.70 0.16 240;
+        --secondary-foreground: 1 0 0;
+        
+        --muted: 0.25 0.01 0;
+        --muted-foreground: 0.70 0.01 0;
+        
+        --accent: 0.70 0.16 240;
+        --accent-foreground: 1 0 0;
+        
+        --destructive: 0.60 0.22 27.325;
+        --destructive-foreground: 0.98 0 0;
+        
+        --border: 0.30 0.01 0;
+        --input: 0.30 0.01 0;
+        --ring: 0.55 0.18 252;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Roboto', 'Open Sans', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', 'Inter', sans-serif;
+        font-weight: 600;
+    }
+}
+
+@layer utilities {
+    .text-jeevan-primary {
+        color: oklch(var(--jeevan-primary));
+    }
+    
+    .text-jeevan-teal {
+        color: oklch(var(--jeevan-teal));
+    }
+    
+    .text-jeevan-text {
+        color: oklch(var(--jeevan-text));
+    }
+    
+    .bg-jeevan-primary {
+        background-color: oklch(var(--jeevan-primary));
+    }
+    
+    .bg-jeevan-teal {
+        background-color: oklch(var(--jeevan-teal));
+    }
+    
+    .bg-jeevan-light-blue {
+        background-color: oklch(var(--jeevan-light-blue));
+    }
+    
+    .bg-jeevan-soft-grey {
+        background-color: oklch(var(--jeevan-soft-grey));
+    }
+    
+    .border-jeevan-primary {
+        border-color: oklch(var(--jeevan-primary));
+    }
+    
+    .border-jeevan-teal {
+        border-color: oklch(var(--jeevan-teal));
+    }
+}
+

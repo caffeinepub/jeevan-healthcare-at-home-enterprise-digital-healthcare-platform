@@ -1,0 +1,77 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-remove-any-standalone-symptom-checker-route-entry-from-the-root-router-configuration-e-g-app-tsx-or-equivalent-main-router-file-to-eliminate-the-missing-route-console-warning-the-symptom-checker-must-not-appear-as-a-separate-top-level-route-or-stack-screen",
+      "featureTitle": "Remove any standalone /symptom-checker route entry from the root router configuration (e.g., App.tsx or equivalent main router file) to eliminate the missing-route console warning. The Symptom Checker must not appear as a separate top-level route or stack screen.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-symptom-checker-component-continues-to-function-correctly-as-an-embedded-component-inside-the-health-tab-s-digital-health-section-it-must-not-be-accessible-via-a-direct-url-or-navigation-link-outside-of-the-health-tab",
+      "featureTitle": "Ensure the Symptom Checker component continues to function correctly as an embedded component inside the Health tab's Digital Health section. It must not be accessible via a direct URL or navigation link outside of the Health tab.",
+      "files": [
+        "frontend/src/pages/HealthPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-remove-all-orphaned-imports-navigation-links-and-redirect-logic-that-reference-the-removed-symptom-checker-route-across-the-entire-frontend-codebase-e-g-any-usenavigate-symptom-checker-link-to-symptom-checker-or-similar-references-in-header-sidebar-or-other-navigation-components",
+      "featureTitle": "Remove all orphaned imports, navigation links, and redirect logic that reference the removed /symptom-checker route across the entire frontend codebase (e.g., any useNavigate('/symptom-checker'), <Link to='/symptom-checker'>, or similar references in header, sidebar, or other navigation components).",
+      "files": [
+        "frontend/src/components/Header.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

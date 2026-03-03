@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Jeevan HealthCare at Home: full enterprise-grade AI-powered home healthcare super app with React Native frontend, Node.js/Express/MongoDB backend, role-based dashboards (Patient, Doctor, Nurse, Corporate HR, Admin, Super Admin), 7 core modules (Home Healthcare, Preventive/Corporate, Digital Health, Mother & Child, Wellness, Specialist Care, B2B), AI symptom checker embedded in Health tab, Razorpay payments, Firebase notifications, WhatsApp API, seeded sample data, and web admin panel.",
+  "architectural_notes": [
+    "Symptom Checker is an embedded component inside the Health Tab (Digital Health Module), NOT a standalone route. No /symptom-checker entry in root layout.",
+    "Tech stack: React Native (mobile), Node.js + Express + MongoDB (backend), JWT + RBAC auth, Firebase push notifications, Razorpay payments, WhatsApp Business API.",
+    "6 user roles: Patient, Doctor, Nurse/Caregiver, Corporate HR, Admin, Super Admin — each with separate dashboard and permission-based access.",
+    "Bottom tab navigator: Home | Bookings | Health | Subscriptions | Profile.",
+    "Modular feature-based folder structure; each module (Healthcare, Corporate, Wellness, Specialist, Digital Health, etc.) is independent with separated backend routes and controllers."
+  ],
+  "known_issues": [],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-update-the-global-theme-so-that-any-ui-currently-using-the-jeevan-green-teal-brand-color-is-rendered-in-medical-blue-instead-across-all-pages-and-dashboards",
+      "title": "Update the global theme so that any UI currently using the Jeevan green/teal brand color is rendered in Medical Blue instead, across all pages and dashboards.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-tailwind-theme-tokens-and-utilities-remain-consistent-after-the-color-change-by-updating-the-css-variables-used-by-tailwind-e-g-secondary-accent-related-chart-tokens-so-charts-badges-status-elements-no-longer-use-green",
+      "title": "Ensure Tailwind theme tokens and utilities remain consistent after the color change by updating the CSS variables used by Tailwind (e.g., `--secondary`, `--accent`, related chart tokens) so charts/badges/status elements no longer use green.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-brand-logo-img-element-selected-by-xpath-html-1-body-1-div-1-div-1-footer-1-div-1-div-1-div-1-div-1-img-1-to-use-the-user-uploaded-jeevan-healthcare-logo-image-instead-of-the-current-src-assets-generated-jeevan-logo-transparent-dim-200x200-png-add-the-chosen-uploaded-image-file-to-the-frontend-static-assets-and-update-only-this-img-element-in-frontend-src-components-footer-tsx-accordingly-src-and-if-needed-to-prevent-distortion-its-sizing-classes",
+      "title": "Update the footer brand logo <img> element (selected by XPath /html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]/div[1]/div[1]/div[1]/img[1]) to use the user-uploaded Jeevan HealthCare logo image instead of the current src (/assets/generated/jeevan-logo-transparent.dim_200x200.png). Add the chosen uploaded image file to the frontend static assets and update only this <img> element in frontend/src/components/Footer.tsx accordingly (src and, if needed to prevent distortion, its sizing classes).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-any-standalone-symptom-checker-route-entry-from-the-root-router-configuration-e-g-app-tsx-or-equivalent-main-router-file-to-eliminate-the-missing-route-console-warning-the-symptom-checker-must-not-appear-as-a-separate-top-level-route-or-stack-screen",
+      "title": "Remove any standalone /symptom-checker route entry from the root router configuration (e.g., App.tsx or equivalent main router file) to eliminate the missing-route console warning. The Symptom Checker must not appear as a separate top-level route or stack screen.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-symptom-checker-component-continues-to-function-correctly-as-an-embedded-component-inside-the-health-tab-s-digital-health-section-it-must-not-be-accessible-via-a-direct-url-or-navigation-link-outside-of-the-health-tab",
+      "title": "Ensure the Symptom Checker component continues to function correctly as an embedded component inside the Health tab's Digital Health section. It must not be accessible via a direct URL or navigation link outside of the Health tab.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-orphaned-imports-navigation-links-and-redirect-logic-that-reference-the-removed-symptom-checker-route-across-the-entire-frontend-codebase-e-g-any-usenavigate-symptom-checker-link-to-symptom-checker-or-similar-references-in-header-sidebar-or-other-navigation-components",
+      "title": "Remove all orphaned imports, navigation links, and redirect logic that reference the removed /symptom-checker route across the entire frontend codebase (e.g., any useNavigate('/symptom-checker'), <Link to='/symptom-checker'>, or similar references in header, sidebar, or other navigation components).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update platform theme: change green UI color to Medical Blue (site-wide branding update).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Replace an existing UI image/asset with a user-provided image in the deployed app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Build full React Native mobile app with all 7 healthcare modules, role-based dashboards, booking flow, AI symptom checker (embedded in Health tab), payments, notifications, and seeded sample data.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Fix missing /symptom-checker route warning by removing standalone route from root layout; keep Symptom Checker embedded inside Health tab only.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Jeevan HealthCare at Home",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
