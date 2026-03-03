@@ -1,28 +1,29 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Database Schema Page with enhanced card layout (description, PK/FK labels)",
+  "title": "Update DatabaseSchemaPage with PK/FK labels and full hardcoded table cards",
   "requirements": [
     {
-      "id": "REQ-70",
-      "summary": "Update DatabaseSchemaPage.tsx to display 10 table cards with enhanced content including table name, description, field list, and PK/FK labels using hardcoded JSX",
+      "id": "REQ-71",
+      "summary": "Update DatabaseSchemaPage.tsx to display 10 hardcoded database table cards with full field details, PK badges, and FK→ReferencedTable badges using pure JSX with no hooks or dynamic rendering",
       "acceptanceCriteria": [
-        "All 10 table cards are rendered: Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions.",
-        "Each card displays the table name as a bold heading.",
-        "Each card displays a single-line description of the table's purpose.",
-        "Each card lists all fields in 'Column Name – Data Type' format.",
-        "The Primary Key field on each card is clearly labelled with a 'PK' indicator.",
-        "All Foreign Key fields on each card are clearly labelled with a 'FK' indicator and the referenced table name.",
-        "No .map(), conditional rendering, hooks (useState, useEffect, useRef, etc.), or external library imports beyond React and Tailwind are present in the file.",
+        "The page renders exactly 10 table cards in a responsive grid layout.",
+        "Each card displays the table name as a bold heading at the top.",
+        "Each card displays a one-line plain-English description of the table's purpose.",
+        "Each card lists all fields as rows in 'Column Name – Data Type' format.",
+        "The Primary Key field on each card is clearly labelled with a visible 'PK' badge.",
+        "All Foreign Key fields are clearly labelled with a 'FK → ReferencedTable' badge indicating the referenced table.",
+        "The component contains no .map(), no useState, no useEffect, no hooks, no routing logic, no backend calls, and no animations.",
+        "No external library imports are used beyond React and Tailwind CSS classes.",
         "All content is hardcoded JSX — no dynamic rendering or computed values.",
-        "Styling uses Tailwind utility classes consistent with the Medical Blue theme used elsewhere in the application.",
-        "The component is a single default-export functional component with no props."
+        "Styling follows the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+        "The component is a single self-contained default-export functional component with no props."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/DatabaseSchemaPage.tsx",
           "operation": "modify",
-          "description": "Replace the existing DatabaseSchemaPage component with a hardcoded JSX implementation that renders exactly 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions). Each card must display: (1) table name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled with a 'PK' badge (e.g., inline span with Tailwind classes like 'bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-semibold'), and (5) any Foreign Key fields clearly labelled with a 'FK' badge and the referenced table name (e.g., 'FK → TableName'). Remove all .map() calls, hooks (useState, useEffect, useRef), conditional rendering logic, and external library imports beyond React. Use only Tailwind utility classes for styling, consistent with the Medical Blue theme (using colors like blue-50, blue-600, blue-100, gray-700, etc.). Maintain the component as a single default-export functional component with no props, no routing logic, no backend calls, and no animations. Ensure all content is hardcoded JSX with no dynamic rendering or computed values."
+          "description": "Replace the entire component with hardcoded JSX that renders exactly 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) in a responsive grid. Each card must include: (1) a bold heading with the table name, (2) a one-line plain-English description below the heading, (3) a complete list of all fields formatted as 'Column Name – Data Type' rows, (4) a 'PK' badge next to the Primary Key field (always _id ObjectId), (5) 'FK → ReferencedTable' badges next to Foreign Key fields (e.g., user_id gets 'FK → Users', doctor_id gets 'FK → Doctors', specialty_id gets 'FK → Specialties', appointment_id gets 'FK → Appointments', payment_id gets 'FK → Payments'). Use Tailwind utility classes for styling (e.g., bg-white, rounded-lg, shadow-md, p-6 for cards; text-xl font-bold for headings; text-gray-600 for descriptions; badge styling with bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs for PK; bg-purple-100 text-purple-800 for FK). Do not use any .map(), useState, useEffect, or hooks. Do not import any external libraries beyond React. Keep all content as static JSX with no computed values or dynamic rendering. Ensure the grid is responsive (e.g., grid-cols-1 md:grid-cols-2 lg:grid-cols-3). Follow the Medical Blue theme color palette consistent with the rest of the application (use colors like blue-600, blue-500, etc.). Ensure the component is a single default-export functional component with no props and no routing logic."
         }
       ]
     }

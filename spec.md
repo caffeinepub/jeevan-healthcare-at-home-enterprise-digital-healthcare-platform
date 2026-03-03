@@ -1,14 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Update the `DatabaseSchemaPage.tsx` to display all 10 database table cards with enhanced content including descriptions, PK/FK labels, and field listings.
+**Goal:** Update the `DatabaseSchemaPage.tsx` component to display all 10 database tables as detailed, fully hardcoded cards with PK/FK labels.
 
 **Planned changes:**
-- Update `DatabaseSchemaPage.tsx` to render 10 hardcoded table cards: Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, and Subscriptions
-- Each card displays the table name as a bold heading, a one-line description of the table's purpose, and a field list in "Column Name – Data Type" format
-- Primary Key fields are clearly labelled with a "PK" badge on each card
-- Foreign Key fields are clearly labelled with a "FK" badge indicating the referenced table
-- All content is hardcoded JSX with no hooks, no `.map()`, no dynamic rendering, and no external imports beyond React
-- Styling follows the existing Medical Blue theme using Tailwind utility classes
+- Rewrite `DatabaseSchemaPage.tsx` with 10 hardcoded table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions)
+- Each card shows: bold table name heading, one-line plain-English description, field list in "Column Name – Data Type" format, a "PK" badge on the primary key field, and "FK → ReferencedTable" badges on all foreign key fields
+- Layout uses a responsive grid with Medical Blue Tailwind styling consistent with the rest of the app
+- Component uses no hooks, no `.map()`, no external libraries beyond React and Tailwind, no backend calls, no routing logic, and no animations — all content is pure hardcoded JSX
 
-**User-visible outcome:** The Database Schema page shows all 10 tables as clean, informative cards with descriptions, field types, and clear PK/FK indicators, making the schema easy to read and understand at a glance.
+**User-visible outcome:** Users viewing the Database Schema page will see all 10 tables displayed as clean, readable cards clearly indicating each field's data type along with prominent PK and FK relationship labels.

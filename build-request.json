@@ -1,16 +1,16 @@
 {
   "kind": "build_request",
-  "title": "Update Database Schema Page with enhanced card layout (description, PK/FK labels)",
+  "title": "Update DatabaseSchemaPage with PK/FK labels and full hardcoded table cards",
   "projectName": "Jeevan HealthCare",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-70",
-      "text": "Update `frontend/src/pages/DatabaseSchemaPage.tsx` so that each of the 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) displays the following hardcoded content in order: (1) Table Name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled (e.g., with a 'PK' badge or inline label), and (5) any Foreign Key fields clearly labelled with a 'FK' badge or inline label indicating the referenced table. All content must remain hardcoded JSX — no .map(), no useState, no useEffect, no hooks, no external library imports beyond React and Tailwind CSS classes. The component must remain a single self-contained default-export functional component with no props, no routing logic, no backend calls, and no animations. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+      "id": "REQ-71",
+      "text": "Update `frontend/src/pages/DatabaseSchemaPage.tsx` so that each of the 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) displays the following hardcoded content in order: (1) Table Name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled with a 'PK' badge, and (5) any Foreign Key fields clearly labelled with a 'FK → ReferencedTable' badge. All content must be hardcoded JSX — no .map(), no useState, no useEffect, no hooks, no external library imports beyond React and Tailwind CSS classes. The component must remain a single self-contained default-export functional component with no props, no routing logic, no backend calls, and no animations. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application. The 10 tables and their fields are: (1) Users: _id ObjectId PK, full_name String, phone String, email String, password_hash String, role Enum, abha_id String, date_of_birth Date, gender Enum, address Object, is_active Boolean, otp_verified Boolean, created_at DateTime, updated_at DateTime. (2) Doctors: _id ObjectId PK, user_id ObjectId FK→Users, specialty_id ObjectId FK→Specialties, full_name String, qualification String, registration_number String, years_of_experience Number, consultation_fee Number, available_modes Array, bio String, photo_url String, star_rating Number, is_verified Boolean, languages Array, created_at DateTime. (3) Specialties: _id ObjectId PK, category_name String, emoji_icon String, specialist_types Array, is_active Boolean, sort_order Number, created_at DateTime. (4) Doctor_Schedules: _id ObjectId PK, doctor_id ObjectId FK→Doctors, day_of_week Enum, start_time String, end_time String, slot_duration_minutes Number, consultation_mode Enum, is_available Boolean, created_at DateTime. (5) Appointments: _id ObjectId PK, booking_id String, user_id ObjectId FK→Users, doctor_id ObjectId FK→Doctors, consultation_type Enum, appointment_date Date, time_slot String, patient_name String, patient_age Number, patient_gender Enum, symptoms String, address String, patient_type Enum, status Enum, slot_locked_until DateTime, created_at DateTime. (6) Payments: _id ObjectId PK, appointment_id ObjectId FK→Appointments, user_id ObjectId FK→Users, consultation_fee Number, travel_fee Number, gst_amount Number, discount_amount Number, total_amount Number, payment_method Enum, payment_status Enum, razorpay_order_id String, razorpay_payment_id String, created_at DateTime. (7) Reviews: _id ObjectId PK, appointment_id ObjectId FK→Appointments, user_id ObjectId FK→Users, doctor_id ObjectId FK→Doctors, star_rating Number, review_text String, would_recommend Boolean, is_published Boolean, submitted_at DateTime, created_at DateTime. (8) Medical_Records: _id ObjectId PK, user_id ObjectId FK→Users, appointment_id ObjectId FK→Appointments, doctor_id ObjectId FK→Doctors, record_type Enum, diagnosis String, medicines Array, additional_notes String, file_urls Array, created_at DateTime. (9) Corporate_Accounts: _id ObjectId PK, company_name String, hr_contact_name String, hr_email String, hr_phone String, city String, discount_percent Number, employee_count Number, contract_start Date, contract_end Date, is_active Boolean, created_at DateTime. (10) Subscriptions: _id ObjectId PK, user_id ObjectId FK→Users, plan_name String, plan_type Enum, discount_percent Number, start_date Date, end_date Date, is_active Boolean, payment_id ObjectId FK→Payments, created_at DateTime.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-1"
         ],
         "quotes": [
           "Display 10 database tables as simple clean cards using hardcoded HTML/JSX.",
@@ -18,34 +18,32 @@
         ]
       },
       "acceptanceCriteria": [
-        "All 10 table cards are rendered: Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions.",
-        "Each card displays the table name as a bold heading.",
-        "Each card displays a single-line description of the table's purpose.",
-        "Each card lists all fields in 'Column Name – Data Type' format.",
-        "The Primary Key field on each card is clearly labelled with a 'PK' indicator.",
-        "All Foreign Key fields on each card are clearly labelled with a 'FK' indicator and the referenced table name.",
-        "No .map(), conditional rendering, hooks (useState, useEffect, useRef, etc.), or external library imports beyond React and Tailwind are present in the file.",
+        "The page renders exactly 10 table cards in a responsive grid layout.",
+        "Each card displays the table name as a bold heading at the top.",
+        "Each card displays a one-line plain-English description of the table's purpose.",
+        "Each card lists all fields as rows in 'Column Name – Data Type' format.",
+        "The Primary Key field on each card is clearly labelled with a visible 'PK' badge.",
+        "All Foreign Key fields are clearly labelled with a 'FK → ReferencedTable' badge indicating the referenced table.",
+        "The component contains no .map(), no useState, no useEffect, no hooks, no routing logic, no backend calls, and no animations.",
+        "No external library imports are used beyond React and Tailwind CSS classes.",
         "All content is hardcoded JSX — no dynamic rendering or computed values.",
-        "Styling uses Tailwind utility classes consistent with the Medical Blue theme used elsewhere in the application.",
-        "The component is a single default-export functional component with no props."
+        "Styling follows the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+        "The component is a single self-contained default-export functional component with no props."
       ]
     }
   ],
   "constraints": [
-    "All content in DatabaseSchemaPage.tsx must be hardcoded JSX — no .map(), no dynamic rendering, no computed values.",
-    "No hooks (useState, useEffect, useRef, etc.) may be used.",
-    "No external library imports beyond React itself and Tailwind CSS classes.",
-    "No routing logic, no backend or API calls, no database connections.",
-    "No animations.",
-    "Do not edit any file listed under frontend.immutablePaths."
+    "No .map(), no useState, no useEffect, no hooks of any kind in DatabaseSchemaPage.tsx.",
+    "No external library imports beyond React and Tailwind CSS classes.",
+    "All table content must be hardcoded JSX — no dynamic rendering or computed values.",
+    "No routing logic, no backend or API calls, no animations in this component.",
+    "Do not modify any immutable frontend paths listed in the system context."
   ],
   "nonGoals": [
-    "Adding real database connectivity or live schema introspection.",
-    "Adding routing or navigation to/from DatabaseSchemaPage beyond what already exists.",
-    "Creating reusable sub-components for the table cards.",
-    "Adding state management or interactive features (search, filter, expand/collapse).",
-    "Modifying any backend files.",
-    "Changing any other page or component outside of DatabaseSchemaPage.tsx."
+    "Adding any new routes or navigation to the Database Schema page.",
+    "Connecting the schema page to any real or mock backend data source.",
+    "Adding interactive features (search, filter, sort) to the schema page.",
+    "Modifying any other page or component outside of DatabaseSchemaPage.tsx."
   ],
   "imageRequirements": {
     "required": [],
