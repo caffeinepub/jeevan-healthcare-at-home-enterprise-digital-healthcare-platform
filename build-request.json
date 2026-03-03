@@ -1,78 +1,35 @@
 {
   "kind": "build_request",
-  "title": "Fix missing /symptom-checker route warning — remove standalone route, keep Symptom Checker in Health tab",
-  "projectName": "Jeevan HealthCare at Home",
+  "title": "Replace phone number in header with +91 9700104108",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Remove any standalone /symptom-checker route entry from the root router configuration (e.g., App.tsx or equivalent main router file) to eliminate the missing-route console warning. The Symptom Checker must not appear as a separate top-level route or stack screen.",
+      "id": "REQ-18",
+      "text": "In `frontend/src/components/Header.tsx`, locate the `<strong>` element inside the top bar's phone/contact span (XPath: /html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/span[1]/strong[1]) and replace its text content with '+91 9700104108'.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Remove the /symptom-checker route reference from the root layout and navigation configuration to eliminate the warning.",
-          "Remove the standalone route entry."
+          "Replace with +91 9700104108"
         ]
       },
       "acceptanceCriteria": [
-        "No console warning about a missing /symptom-checker route when the app starts.",
-        "App.tsx (or equivalent router file) contains no <Route>, stack screen, or tab entry pointing to /symptom-checker.",
-        "No unused imports of a standalone SymptomChecker route component remain in the router file."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Ensure the Symptom Checker component continues to function correctly as an embedded component inside the Health tab's Digital Health section. It must not be accessible via a direct URL or navigation link outside of the Health tab.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Keep Symptom Checker Inside Health Tab",
-          "Health Tab → Digital Health Dashboard → Symptom Checker Component (internal component, not separate route)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Navigating to the Health tab displays the Digital Health section with the Symptom Checker embedded and fully functional.",
-        "No broken component rendering or null-reference errors related to the Symptom Checker after route removal.",
-        "The bottom tab navigator contains exactly: Home, Bookings, Health, Subscriptions, Profile — with no extra tab for Symptom Checker."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Remove all orphaned imports, navigation links, and redirect logic that reference the removed /symptom-checker route across the entire frontend codebase (e.g., any useNavigate('/symptom-checker'), <Link to='/symptom-checker'>, or similar references in header, sidebar, or other navigation components).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Clean Up Unused Imports",
-          "Check and remove: Unused SymptomChecker route imports, Any navigation link pointing to /symptom-checker, Any redirect logic referencing the old route"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A project-wide search for the string 'symptom-checker' (as a route path) returns no results in navigation or routing files.",
-        "No TypeScript/JavaScript import errors related to a removed SymptomChecker route module.",
-        "App compiles and runs with a clean console — no warnings or errors related to the symptom-checker route."
+        "The header top bar displays '+91 9700104108' as the phone number.",
+        "No other header content or styling is changed.",
+        "The change is visible on all pages that use the shared Header component."
       ]
     }
   ],
   "constraints": [
-    "Do not remove or modify the Symptom Checker component itself — only remove its standalone route registration.",
-    "Do not alter any file listed under frontend.immutablePaths.",
-    "Do not change the bottom tab structure beyond removing the erroneous /symptom-checker entry."
+    "Only modify the single <strong> element identified by the given XPath in Header.tsx.",
+    "Do not alter any other text, layout, or styling in the Header component."
   ],
   "nonGoals": [
-    "Rebuilding or redesigning the Symptom Checker feature.",
-    "Adding new AI or health-assessment functionality.",
-    "Changes to backend routes or Motoko canister logic.",
-    "Any theme, color, or branding changes.",
-    "Adding a new standalone Symptom Checker page or module."
+    "Updating phone numbers in the Footer or any other component.",
+    "Changing the header layout or styling.",
+    "Modifying backend data."
   ],
   "imageRequirements": {
     "required": [],

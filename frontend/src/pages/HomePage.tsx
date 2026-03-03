@@ -24,14 +24,14 @@ import { useActiveHealthPackages } from '@/hooks/useQueries';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const quickServices = [
-  { icon: Stethoscope, title: 'Doctor Consultation', slug: 'doctor-consultation' },
-  { icon: Pill, title: 'Medicine Delivery', slug: 'medicine-delivery' },
-  { icon: TestTube, title: 'Lab Tests', slug: 'lab-tests' },
-  { icon: Activity, title: 'Diagnostics', slug: 'diagnostics' },
-  { icon: Heart, title: 'Nursing Care', slug: 'nursing-care' },
-  { icon: Users, title: 'Caregiver Services', slug: 'caregiver-services' },
-  { icon: Dumbbell, title: 'Physiotherapy', slug: 'physiotherapy' },
-  { icon: Syringe, title: 'Vaccination', slug: 'vaccination' },
+  { icon: Stethoscope, title: 'Doctor Consultation', path: '/doctor-consultation', isRoute: true },
+  { icon: Pill, title: 'Medicine Delivery', slug: 'medicine-delivery', isRoute: false },
+  { icon: TestTube, title: 'Lab Tests', slug: 'lab-tests', isRoute: false },
+  { icon: Activity, title: 'Diagnostics', slug: 'diagnostics', isRoute: false },
+  { icon: Heart, title: 'Nursing Care', slug: 'nursing-care', isRoute: false },
+  { icon: Users, title: 'Caregiver Services', slug: 'caregiver-services', isRoute: false },
+  { icon: Dumbbell, title: 'Physiotherapy', slug: 'physiotherapy', isRoute: false },
+  { icon: Syringe, title: 'Vaccination', slug: 'vaccination', isRoute: false },
 ];
 
 const whyChooseUs = [
@@ -89,8 +89,12 @@ export default function HomePage() {
   const [showHealthPackages, setShowHealthPackages] = useState(false);
   const { data: healthPackages, isLoading: packagesLoading } = useActiveHealthPackages();
 
-  const handleServiceClick = (slug: string) => {
-    navigate({ to: '/services/$slug', params: { slug } });
+  const handleServiceClick = (service: typeof quickServices[0]) => {
+    if (service.isRoute && service.path) {
+      navigate({ to: service.path });
+    } else if (!service.isRoute && service.slug) {
+      navigate({ to: '/services/$slug', params: { slug: service.slug } });
+    }
   };
 
   const handleBookNow = () => {
@@ -126,9 +130,8 @@ export default function HomePage() {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
                   onClick={toggleHealthPackages}
-                  className="rounded-full border-2 border-white font-heading text-white hover:bg-white hover:text-jeevan-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-primary"
+                  className="rounded-full border-2 border-white bg-transparent font-heading text-white hover:bg-white hover:text-jeevan-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-primary"
                   aria-label="View health packages"
                   aria-expanded={showHealthPackages}
                 >
@@ -266,9 +269,9 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-6">
             {quickServices.map((service) => (
               <Card
-                key={service.slug}
+                key={service.title}
                 className="cursor-pointer rounded-2xl shadow-soft transition-all hover:shadow-card hover:border-jeevan-teal"
-                onClick={() => handleServiceClick(service.slug)}
+                onClick={() => handleServiceClick(service)}
               >
                 <CardContent className="flex flex-col items-center p-6 text-center">
                   <div className="mb-4 rounded-full bg-jeevan-light-blue p-4">
@@ -277,6 +280,9 @@ export default function HomePage() {
                   <h3 className="font-heading text-sm font-semibold text-jeevan-text md:text-base">
                     {service.title}
                   </h3>
+                  {service.isRoute && (
+                    <span className="mt-1 text-xs text-blue-600 font-medium">Book Now →</span>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -315,10 +321,10 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('doctor-consultation')}
+                      onClick={() => navigate({ to: '/doctor-consultation' })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
-                      Learn More
+                      Book Specialist
                     </Button>
                   </CardContent>
                 </Card>
@@ -335,7 +341,7 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('nursing-care')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'nursing-care' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -355,7 +361,7 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('lab-tests')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'lab-tests' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -379,7 +385,7 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('equipment-rental')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'equipment-rental' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -399,7 +405,7 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('icu-setup')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'icu-setup' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -410,20 +416,40 @@ export default function HomePage() {
             </TabsContent>
 
             <TabsContent value="preventive" className="mt-8">
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <Card className="rounded-2xl shadow-soft">
                   <CardHeader>
                     <CardTitle className="font-heading">Health Checkups</CardTitle>
-                    <CardDescription>Comprehensive health screening</CardDescription>
+                    <CardDescription>Comprehensive preventive screenings</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <img
-                      src="/assets/generated/lab-test-home.dim_800x600.jpg"
+                      src="/assets/generated/diagnostic-lab.dim_800x600.jpg"
                       alt="Health Checkups"
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('health-checkups')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'health-checkups' } })}
+                      className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
+                    >
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="rounded-2xl shadow-soft">
+                  <CardHeader>
+                    <CardTitle className="font-heading">Vaccination</CardTitle>
+                    <CardDescription>Immunization at your doorstep</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <img
+                      src="/assets/generated/lab-test-home.dim_800x600.jpg"
+                      alt="Vaccination"
+                      className="mb-4 rounded-xl"
+                    />
+                    <Button
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'vaccination' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -434,16 +460,16 @@ export default function HomePage() {
                 <Card className="rounded-2xl shadow-soft">
                   <CardHeader>
                     <CardTitle className="font-heading">Corporate Health</CardTitle>
-                    <CardDescription>Workplace health solutions</CardDescription>
+                    <CardDescription>Workplace wellness programs</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <img
-                      src="/assets/generated/lab-test-home.dim_800x600.jpg"
+                      src="/assets/generated/diagnostic-lab.dim_800x600.jpg"
                       alt="Corporate Health"
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('corporate-health')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'corporate-health' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -458,7 +484,7 @@ export default function HomePage() {
                 <Card className="rounded-2xl shadow-soft">
                   <CardHeader>
                     <CardTitle className="font-heading">Physiotherapy</CardTitle>
-                    <CardDescription>Expert rehabilitation at home</CardDescription>
+                    <CardDescription>Rehabilitation at home</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <img
@@ -467,7 +493,7 @@ export default function HomePage() {
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('physiotherapy')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'physiotherapy' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -478,16 +504,16 @@ export default function HomePage() {
                 <Card className="rounded-2xl shadow-soft">
                   <CardHeader>
                     <CardTitle className="font-heading">Mother & Child Care</CardTitle>
-                    <CardDescription>Specialized maternal care</CardDescription>
+                    <CardDescription>Specialized maternal and pediatric care</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <img
                       src="/assets/generated/nursing-care-home.dim_800x600.jpg"
-                      alt="Mother & Child Care"
+                      alt="Mother Child Care"
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('mother-child-care')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'mother-child-care' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -497,17 +523,17 @@ export default function HomePage() {
 
                 <Card className="rounded-2xl shadow-soft">
                   <CardHeader>
-                    <CardTitle className="font-heading">Wellness & Lifestyle</CardTitle>
-                    <CardDescription>Holistic health management</CardDescription>
+                    <CardTitle className="font-heading">Medicine Delivery</CardTitle>
+                    <CardDescription>Medicines delivered to your door</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <img
-                      src="/assets/generated/physiotherapy-home.dim_800x600.jpg"
-                      alt="Wellness"
+                      src="/assets/generated/medicine-delivery.dim_600x400.jpg"
+                      alt="Medicine Delivery"
                       className="mb-4 rounded-xl"
                     />
                     <Button
-                      onClick={() => handleServiceClick('wellness-lifestyle')}
+                      onClick={() => navigate({ to: '/services/$slug', params: { slug: 'medicine-delivery' } })}
                       className="w-full rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
                     >
                       Learn More
@@ -520,29 +546,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Jeevan */}
+      {/* Why Choose Us */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="mb-4 font-heading text-3xl font-bold text-jeevan-primary md:text-4xl">
-              Why Choose Jeevan HealthCare
+              Why Choose Jeevan HealthCare?
             </h2>
             <p className="text-lg text-jeevan-text">
-              Your trusted partner for home healthcare in Hyderabad
+              Trusted by thousands of families across Hyderabad
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="rounded-2xl text-center shadow-soft">
-                <CardContent className="pt-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {whyChooseUs.map((item) => (
+              <Card key={item.title} className="rounded-2xl shadow-soft text-center">
+                <CardContent className="p-8">
                   <div className="mb-4 flex justify-center">
                     <div className="rounded-full bg-jeevan-light-blue p-4">
                       <item.icon className="h-8 w-8 text-jeevan-primary" />
                     </div>
                   </div>
-                  <h3 className="mb-2 font-heading text-xl font-semibold text-jeevan-primary">{item.title}</h3>
-                  <p className="text-jeevan-text">{item.description}</p>
+                  <h3 className="mb-2 font-heading text-lg font-semibold text-jeevan-primary">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-jeevan-text">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -551,47 +579,41 @@ export default function HomePage() {
       </section>
 
       {/* Diagnostics Highlight */}
-      <section className="bg-gradient-to-br from-jeevan-primary to-jeevan-teal py-16 text-white">
+      <section className="bg-jeevan-soft-grey py-16">
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-8 lg:grid-cols-2">
             <div>
-              <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
-                Complete Diagnostic Services at Home
+              <h2 className="mb-4 font-heading text-3xl font-bold text-jeevan-primary md:text-4xl">
+                NABL Certified Diagnostics
               </h2>
-              <p className="mb-6 text-lg text-white/90">
-                From basic blood tests to advanced imaging like X-Ray, ECG, and EEG - all available
-                at your doorstep with accurate results and quick turnaround time.
+              <p className="mb-6 text-lg text-jeevan-text">
+                Our diagnostic services are NABL certified, ensuring the highest accuracy and
+                reliability in test results. Get your reports delivered digitally within 24 hours.
               </p>
               <ul className="mb-8 space-y-3">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                  <span>NABL certified lab partners</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                  <span>Home sample collection</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                  <span>Digital reports within 24 hours</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                  <span>Affordable pricing</span>
-                </li>
+                {[
+                  'Home sample collection',
+                  'Digital reports in 24 hours',
+                  'NABL certified laboratory',
+                  '500+ tests available',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-jeevan-text">
+                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <Button
-                size="lg"
-                onClick={() => handleServiceClick('lab-tests')}
-                className="rounded-full bg-white font-heading text-jeevan-primary shadow-card hover:bg-jeevan-light-blue focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-primary"
+                onClick={() => navigate({ to: '/tests' })}
+                className="rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
               >
-                Explore Diagnostics
+                View All Tests
               </Button>
             </div>
             <div>
               <img
-                src="/assets/generated/lab-test-home.dim_800x600.jpg"
-                alt="Diagnostics"
+                src="/assets/generated/diagnostic-lab.dim_800x600.jpg"
+                alt="Diagnostic Lab"
                 className="rounded-2xl shadow-2xl"
               />
             </div>
@@ -599,49 +621,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Corporate & B2B */}
+      {/* Corporate Services */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid items-center gap-8 lg:grid-cols-2">
-            <div className="order-2 lg:order-1">
+            <div>
               <img
-                src="/assets/generated/doctor-home-visit.dim_800x600.jpg"
-                alt="Corporate Health"
-                className="rounded-2xl shadow-card"
+                src="/assets/generated/doctor-dashboard-interface.dim_800x600.jpg"
+                alt="Corporate Healthcare"
+                className="rounded-2xl shadow-2xl"
               />
             </div>
-            <div className="order-1 lg:order-2">
+            <div>
               <h2 className="mb-4 font-heading text-3xl font-bold text-jeevan-primary md:text-4xl">
-                Corporate & B2B Healthcare Solutions
+                Corporate Healthcare Solutions
               </h2>
               <p className="mb-6 text-lg text-jeevan-text">
-                Comprehensive occupational health services for businesses, including pre-employment
-                checkups, annual health screenings, and on-site medical support.
+                Comprehensive healthcare programs for your employees. From annual health checkups to
+                on-site medical support, we've got your workforce covered.
               </p>
-              <ul className="mb-8 space-y-3 text-jeevan-text">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
-                  <span>Customized health packages</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
-                  <span>On-site health camps</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
-                  <span>Employee wellness programs</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
-                  <span>Compliance support</span>
-                </li>
+              <ul className="mb-8 space-y-3">
+                {[
+                  'Annual health checkup programs',
+                  'On-site medical support',
+                  'Employee wellness programs',
+                  'Customized health packages',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-jeevan-text">
+                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-jeevan-teal" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <Button
-                size="lg"
-                onClick={() => handleServiceClick('corporate-health')}
+                onClick={() => navigate({ to: '/contact' })}
                 className="rounded-full bg-jeevan-primary font-heading hover:bg-jeevan-teal focus:outline-none focus:ring-2 focus:ring-jeevan-primary focus:ring-offset-2"
               >
-                Learn More
+                Contact Us
               </Button>
             </div>
           </div>
@@ -649,33 +665,29 @@ export default function HomePage() {
       </section>
 
       {/* CTA Strip */}
-      <section className="bg-jeevan-teal py-12 text-white">
+      <section className="bg-gradient-to-r from-jeevan-primary to-jeevan-teal py-16 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
-            Ready to Experience Quality Healthcare at Home?
+            Ready to Get Started?
           </h2>
           <p className="mb-8 text-lg text-white/90">
-            Book your home healthcare service today and let our experts take care of you
+            Book your first appointment today and experience healthcare at its best.
           </p>
-          <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button
               size="lg"
               onClick={handleBookNow}
-              className="rounded-full bg-white font-heading text-jeevan-primary shadow-card hover:bg-jeevan-light-blue focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-teal"
-              aria-label="Book healthcare service now"
+              className="rounded-full bg-white font-heading text-jeevan-primary hover:bg-jeevan-light-blue focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-primary"
             >
               Book Now
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              asChild
-              className="rounded-full border-2 border-white font-heading text-white hover:bg-white hover:text-jeevan-teal focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-teal"
+              onClick={() => navigate({ to: '/contact' })}
+              className="rounded-full border-2 border-white bg-transparent font-heading text-white hover:bg-white hover:text-jeevan-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-jeevan-primary"
             >
-              <a href="tel:+919700104108" aria-label="Call Jeevan HealthCare at +91 97001 04108">
-                <Phone className="mr-2 h-5 w-5" />
-                Call +91 97001 04108
-              </a>
+              <Phone className="mr-2 h-5 w-5" />
+              Call Us
             </Button>
           </div>
         </div>

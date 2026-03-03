@@ -1,63 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix missing /symptom-checker route warning — remove standalone route, keep Symptom Checker in Health tab",
+  "title": "Replace phone number in header with +91 9700104108",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Remove any standalone /symptom-checker route entry from the root router configuration to eliminate the missing-route console warning",
+      "id": "REQ-18",
+      "summary": "Update the phone number displayed in the Header component's top bar to '+91 9700104108'",
       "acceptanceCriteria": [
-        "No console warning about a missing /symptom-checker route when the app starts.",
-        "App.tsx (or equivalent router file) contains no <Route>, stack screen, or tab entry pointing to /symptom-checker.",
-        "No unused imports of a standalone SymptomChecker route component remain in the router file."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Remove any standalone route definition for /symptom-checker from the router configuration. Check all route trees (public, admin, doctor, phlebotomist) and remove any Route component with path='/symptom-checker' or similar. Remove any associated imports of a SymptomChecker page component if present."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Ensure the Symptom Checker component continues to function correctly as an embedded component inside the Health tab's Digital Health section",
-      "acceptanceCriteria": [
-        "Navigating to the Health tab displays the Digital Health section with the Symptom Checker embedded and fully functional.",
-        "No broken component rendering or null-reference errors related to the Symptom Checker after route removal.",
-        "The bottom tab navigator contains exactly: Home, Bookings, Health, Subscriptions, Profile — with no extra tab for Symptom Checker."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/HealthPage.tsx",
-          "operation": "modify",
-          "description": "Verify that the Symptom Checker component is properly embedded within the Health tab's Digital Health section as an internal component (not a routed page). Ensure it renders correctly without requiring navigation to a separate route. If the component relies on route parameters or navigation state, refactor it to work as an embedded component within the page structure."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Remove all orphaned imports, navigation links, and redirect logic that reference the removed /symptom-checker route across the entire frontend codebase",
-      "acceptanceCriteria": [
-        "A project-wide search for the string 'symptom-checker' (as a route path) returns no results in navigation or routing files.",
-        "No TypeScript/JavaScript import errors related to a removed SymptomChecker route module.",
-        "App compiles and runs with a clean console — no warnings or errors related to the symptom-checker route."
+        "The header top bar displays '+91 9700104108' as the phone number.",
+        "No other header content or styling is changed.",
+        "The change is visible on all pages that use the shared Header component."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Header.tsx",
           "operation": "modify",
-          "description": "Remove any navigation links, useNavigate('/symptom-checker') calls, or menu items that reference the /symptom-checker route. Ensure navigation logic does not attempt to route to this path."
-        },
-        {
-          "path": "frontend/src/components/Layout.tsx",
-          "operation": "modify",
-          "description": "Remove any redirect logic, route guards, or navigation references to /symptom-checker. Check for any conditional navigation or link components that point to this route."
-        },
-        {
-          "path": "frontend/src/components/Footer.tsx",
-          "operation": "modify",
-          "description": "Remove any footer navigation links to /symptom-checker. Verify no Link or anchor tags reference this route path."
+          "description": "In the Header component, locate the <strong> element inside the top bar's phone/contact span (within the first span element of the top bar) and replace its text content from the current phone number to '+91 9700104108'. This change updates the displayed contact phone number visible in the header across all application pages without modifying any other styling, layout, or content."
         }
       ]
     }

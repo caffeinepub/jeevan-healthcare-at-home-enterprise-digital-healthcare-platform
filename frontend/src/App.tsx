@@ -14,6 +14,9 @@ import OrdersPage from './pages/OrdersPage';
 import OrderTrackingPage from './pages/OrderTrackingPage';
 import ReportsPage from './pages/ReportsPage';
 import HealthPage from './pages/HealthPage';
+import DoctorConsultationPage from './pages/DoctorConsultationPage';
+import DoctorListingPage from './pages/DoctorListingPage';
+import PublicDoctorProfilePage from './pages/PublicDoctorProfilePage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminTestsPage from './pages/admin/AdminTestsPage';
@@ -116,6 +119,24 @@ const healthRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/health',
   component: HealthPage,
+});
+
+const doctorConsultationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/doctor-consultation',
+  component: DoctorConsultationPage,
+});
+
+const doctorListingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/doctor-listing/$specialty',
+  component: DoctorListingPage,
+});
+
+const publicDoctorProfileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/doctor-profile/$doctorId',
+  component: PublicDoctorProfilePage,
 });
 
 // Admin routes
@@ -266,6 +287,9 @@ const routeTree = rootRoute.addChildren([
   orderTrackingRoute,
   reportsRoute,
   healthRoute,
+  doctorConsultationRoute,
+  doctorListingRoute,
+  publicDoctorProfileRoute,
   adminRootRoute.addChildren([
     adminDashboardRoute,
     adminTestsRoute,

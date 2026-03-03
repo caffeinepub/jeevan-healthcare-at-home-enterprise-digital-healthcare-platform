@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useRouter } from '@tanstack/react-router';
-import { ShoppingCart, Menu, X, User, LogOut, LayoutDashboard, Heart, ChevronDown, Phone } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut, LayoutDashboard, Heart, ChevronDown, Phone, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -19,6 +19,7 @@ const NAV_LINKS = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: '/services/home-healthcare' },
   { label: 'Tests & Packages', path: '/tests' },
+  { label: 'Doctor Consultation', path: '/doctor-consultation' },
   { label: 'Health', path: '/health' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
@@ -73,7 +74,7 @@ export default function Header() {
       <div className="bg-blue-700 text-white text-xs py-1.5 px-4 flex items-center justify-between">
         <span className="flex items-center gap-1.5">
           <Phone className="w-3 h-3" />
-          Emergency: <strong>+91 98765 43210</strong>
+          Emergency: <strong>+91 9700104108</strong>
         </span>
         <span className="hidden sm:block">Available 24/7 · Serving Hyderabad & Surrounding Areas</span>
       </div>
@@ -149,6 +150,10 @@ export default function Header() {
                   <DropdownMenuItem onClick={() => navigate({ to: '/health' })}>
                     <Heart className="w-4 h-4 mr-2" />
                     Health Centre
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/doctor-consultation' })}>
+                    <Stethoscope className="w-4 h-4 mr-2" />
+                    Doctor Consultation
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleAuth} className="text-red-600">
