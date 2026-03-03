@@ -24,6 +24,8 @@ import PaymentPage from './pages/PaymentPage';
 import BookingConfirmationPage from './pages/BookingConfirmationPage';
 import OnlineConsultationPage from './pages/OnlineConsultationPage';
 import HomeVisitTrackingPage from './pages/HomeVisitTrackingPage';
+import PostConsultationPage from './pages/PostConsultationPage';
+import RatingReviewPage from './pages/RatingReviewPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminTestsPage from './pages/admin/AdminTestsPage';
@@ -188,6 +190,18 @@ const homeVisitTrackingRoute = createRoute({
   component: HomeVisitTrackingPage,
 });
 
+const postConsultationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/post-consultation',
+  component: PostConsultationPage,
+});
+
+const ratingReviewRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/rating-review',
+  component: RatingReviewPage,
+});
+
 // Admin routes
 const adminRootRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -346,6 +360,8 @@ const routeTree = rootRoute.addChildren([
   bookingConfirmationRoute,
   onlineConsultationRoute,
   homeVisitTrackingRoute,
+  postConsultationRoute,
+  ratingReviewRoute,
   adminRootRoute.addChildren([
     adminDashboardRoute,
     adminTestsRoute,

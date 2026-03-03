@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 33,
+  "projectStateVersion": 39,
   "summary": "Jeevan HealthCare at Home: full enterprise-grade AI-powered home healthcare super app with React Native frontend, Node.js/Express/MongoDB backend, role-based dashboards (Patient, Doctor, Nurse, Corporate HR, Admin, Super Admin), 7 core modules (Home Healthcare, Preventive/Corporate, Digital Health, Mother & Child, Wellness, Specialist Care, B2B), AI symptom checker embedded in Health tab, Razorpay payments, Firebase notifications, WhatsApp API, seeded sample data, web admin panel, and an enterprise-grade Doctor Consultation / Specialist Booking system with 16 specialty categories, end-to-end booking flow (slot selection, patient details, payment, confirmation, reminders, video consultation, post-consultation, reviews), and admin panel for doctor/slot/revenue management.",
   "architectural_notes": [
     "Symptom Checker is an embedded component inside the Health Tab (Digital Health Module), NOT a standalone route. No /symptom-checker entry in root layout.",
@@ -447,6 +447,126 @@
         "REQ-54"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-new-page-frontend-src-pages-postconsultationpage-tsx-at-route-post-consultation-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-the-page-must-receive-doctorid-bookingid-consultationtype-date-timeslot-and-patientname-as-url-search-params-the-page-must-display-a-prominent-header-reading-post-consultation-with-a-sub-header-showing-the-doctor-s-name-looked-up-from-mock-data-via-doctorid-and-the-booking-id",
+      "title": "Create a new page `frontend/src/pages/PostConsultationPage.tsx` at route `/post-consultation` in `frontend/src/App.tsx` following the existing TanStack Router pattern. The page must receive `doctorId`, `bookingId`, `consultationType`, `date`, `timeSlot`, and `patientName` as URL search params. The page must display a prominent header reading 'Post-Consultation' with a sub-header showing the doctor's name (looked up from mock data via doctorId) and the booking ID.",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-postconsultationpage-render-a-download-prescription-action-card-the-card-must-display-a-icon-the-label-download-prescription-and-a-brief-description-such-as-get-your-e-prescription-issued-during-the-consultation-clicking-the-card-triggers-a-browser-print-dialog-window-print-rendering-a-styled-prescription-summary-that-includes-the-doctor-name-patient-name-booking-id-date-and-a-placeholder-diagnosis-and-medicine-list-styling-must-follow-the-medical-blue-theme",
+      "title": "On the PostConsultationPage, render a 'Download Prescription' action card. The card must display a 📄 icon, the label 'Download Prescription', and a brief description such as 'Get your e-prescription issued during the consultation'. Clicking the card triggers a browser print dialog (window.print()) rendering a styled prescription summary that includes the doctor name, patient name, booking ID, date, and a placeholder diagnosis and medicine list. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-postconsultationpage-render-an-order-medicines-action-card-the-card-must-display-a-icon-the-label-order-medicines-and-a-brief-description-such-as-order-prescribed-medicines-for-home-delivery-clicking-the-card-navigates-the-user-to-the-existing-tests-medicines-catalog-page-route-tests-or-equivalent-already-present-in-the-app-styling-must-follow-the-medical-blue-theme",
+      "title": "On the PostConsultationPage, render an 'Order Medicines' action card. The card must display a 💊 icon, the label 'Order Medicines', and a brief description such as 'Order prescribed medicines for home delivery'. Clicking the card navigates the user to the existing Tests/Medicines catalog page (route `/tests` or equivalent already present in the app). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-57"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-postconsultationpage-render-a-book-lab-tests-action-card-the-card-must-display-a-icon-the-label-book-lab-tests-and-a-brief-description-such-as-schedule-diagnostic-tests-recommended-by-your-doctor-clicking-the-card-navigates-the-user-to-the-existing-tests-catalog-page-route-tests-or-equivalent-already-present-in-the-app-styling-must-follow-the-medical-blue-theme",
+      "title": "On the PostConsultationPage, render a 'Book Lab Tests' action card. The card must display a 🧪 icon, the label 'Book Lab Tests', and a brief description such as 'Schedule diagnostic tests recommended by your doctor'. Clicking the card navigates the user to the existing tests catalog page (route `/tests` or equivalent already present in the app). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-postconsultationpage-render-a-schedule-follow-up-action-card-the-card-must-display-a-icon-the-label-schedule-follow-up-and-a-brief-description-such-as-book-a-follow-up-appointment-with-the-same-doctor-clicking-the-card-navigates-the-user-to-the-choose-consultation-type-screen-at-route-consultation-type-doctorid-passing-the-same-doctorid-from-the-current-page-s-url-params-so-the-booking-flow-restarts-for-the-same-doctor-styling-must-follow-the-medical-blue-theme",
+      "title": "On the PostConsultationPage, render a 'Schedule Follow-up' action card. The card must display a 📅 icon, the label 'Schedule Follow-up', and a brief description such as 'Book a follow-up appointment with the same doctor'. Clicking the card navigates the user to the 'Choose Consultation Type' screen at route `/consultation-type/:doctorId`, passing the same `doctorId` from the current page's URL params so the booking flow restarts for the same doctor. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-postconsultationpage-arrange-the-four-action-cards-download-prescription-order-medicines-book-lab-tests-schedule-follow-up-in-a-responsive-2-column-grid-on-mobile-and-a-2-2-or-4-column-grid-on-wider-screens-each-card-must-have-a-consistent-height-a-hover-active-highlight-state-using-the-medical-blue-palette-and-clear-icon-label-description-layout-include-a-go-to-home-button-at-the-bottom-of-the-page-styled-in-the-medical-blue-theme-that-navigates-to",
+      "title": "On the PostConsultationPage, arrange the four action cards (Download Prescription, Order Medicines, Book Lab Tests, Schedule Follow-up) in a responsive 2-column grid on mobile and a 2×2 or 4-column grid on wider screens. Each card must have a consistent height, a hover/active highlight state using the Medical Blue palette, and clear icon + label + description layout. Include a 'Go to Home' button at the bottom of the page styled in the Medical Blue theme that navigates to `/`.",
+      "reqIds": [
+        "REQ-60"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-pages-bookingconfirmationpage-tsx-to-add-a-post-consultation-navigation-entry-point-after-the-consultation-execution-buttons-start-consultation-track-doctor-add-a-clearly-labelled-section-or-button-titled-post-consultation-actions-this-button-must-always-be-visible-on-the-confirmation-page-and-must-navigate-to-post-consultation-passing-doctorid-bookingid-consultationtype-date-timeslot-and-patientname-as-query-params-styling-must-follow-the-medical-blue-theme",
+      "title": "Update `frontend/src/pages/BookingConfirmationPage.tsx` to add a 'Post-Consultation' navigation entry point. After the consultation execution buttons (Start Consultation / Track Doctor), add a clearly labelled section or button titled 'Post-Consultation Actions'. This button must always be visible on the confirmation page and must navigate to `/post-consultation` passing `doctorId`, `bookingId`, `consultationType`, `date`, `timeSlot`, and `patientName` as query params. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-61"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-page-frontend-src-pages-ratingreviewpage-tsx-at-route-rating-review-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-the-page-must-receive-doctorid-bookingid-consultationtype-date-timeslot-and-patientname-as-url-search-params-the-page-must-display-a-prominent-header-reading-rate-your-consultation-with-a-sub-header-showing-the-doctor-s-name-looked-up-from-mock-data-via-doctorid-and-the-booking-id",
+      "title": "Create a new page `frontend/src/pages/RatingReviewPage.tsx` at route `/rating-review` in `frontend/src/App.tsx` following the existing TanStack Router pattern. The page must receive `doctorId`, `bookingId`, `consultationType`, `date`, `timeSlot`, and `patientName` as URL search params. The page must display a prominent header reading 'Rate Your Consultation' with a sub-header showing the doctor's name (looked up from mock data via doctorId) and the booking ID.",
+      "reqIds": [
+        "REQ-62"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-ratingreviewpage-implement-a-delayed-display-trigger-the-rating-review-form-must-not-be-visible-immediately-instead-show-a-countdown-or-waiting-state-that-resolves-after-a-mock-2-hour-delay-simulated-by-an-immediately-visible-review-unlocked-state-for-demo-purposes-since-a-real-2-hour-wait-is-impractical-in-a-browser-session-display-an-informational-banner-reading-reviews-can-be-submitted-2-hours-after-your-consultation-and-immediately-show-the-form-in-an-unlocked-state-so-users-can-interact-with-it-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "On the RatingReviewPage, implement a delayed display trigger: the rating & review form must not be visible immediately. Instead, show a countdown or waiting state that resolves after a mock 2-hour delay simulated by an immediately-visible 'Review Unlocked' state for demo purposes (since a real 2-hour wait is impractical in a browser session). Display an informational banner reading 'Reviews can be submitted 2 hours after your consultation' and immediately show the form in an unlocked state so users can interact with it. Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-63"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-ratingreviewpage-render-a-star-rating-control-labelled-rate-doctor-the-control-must-display-5-interactive-star-icons-the-user-must-be-able-to-select-a-rating-from-1-to-5-stars-by-clicking-or-tapping-a-star-the-selected-rating-must-be-visually-highlighted-filled-stars-in-the-medical-blue-palette-hovering-over-stars-must-preview-the-rating-before-selection-the-selected-numeric-rating-value-must-be-stored-in-local-component-state",
+      "title": "On the RatingReviewPage, render a star rating control labelled 'Rate Doctor'. The control must display 5 interactive star icons. The user must be able to select a rating from 1 to 5 stars by clicking or tapping a star. The selected rating must be visually highlighted (filled stars) in the Medical Blue palette. Hovering over stars must preview the rating before selection. The selected numeric rating value must be stored in local component state.",
+      "reqIds": [
+        "REQ-64"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-ratingreviewpage-render-a-multi-line-text-area-labelled-write-your-review-for-the-user-to-enter-free-text-feedback-about-their-consultation-the-text-area-must-have-a-placeholder-such-as-share-your-experience-with-the-doctor-below-the-text-area-display-a-character-counter-e-g-0-500-limiting-input-to-500-characters-the-entered-review-text-must-be-stored-in-local-component-state-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "On the RatingReviewPage, render a multi-line text area labelled 'Write Your Review' for the user to enter free-text feedback about their consultation. The text area must have a placeholder such as 'Share your experience with the doctor…'. Below the text area, display a character counter (e.g., '0 / 500') limiting input to 500 characters. The entered review text must be stored in local component state. Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-65"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-ratingreviewpage-render-a-would-you-recommend-this-doctor-section-labelled-recommend-with-two-mutually-exclusive-toggle-buttons-yes-and-no-only-one-option-may-be-selected-at-a-time-the-selected-option-must-be-visually-highlighted-using-the-medical-blue-palette-the-selected-recommendation-value-must-be-stored-in-local-component-state-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "On the RatingReviewPage, render a 'Would you recommend this doctor?' section labelled 'Recommend?' with two mutually exclusive toggle buttons: '👍 Yes' and '👎 No'. Only one option may be selected at a time. The selected option must be visually highlighted using the Medical Blue palette. The selected recommendation value must be stored in local component state. Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-66"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-ratingreviewpage-add-a-prominent-submit-review-button-at-the-bottom-styled-in-the-medical-blue-theme-the-button-must-be-disabled-until-a-a-star-rating-is-selected-and-b-the-review-text-area-is-not-empty-on-click-simulate-a-successful-review-submission-mock-store-the-review-in-local-component-state-and-display-an-inline-success-message-such-as-thank-you-your-review-has-been-submitted-after-submission-disable-all-form-fields-and-the-submit-button-to-prevent-re-submission-include-a-go-to-home-button-below-the-success-message-that-navigates-to",
+      "title": "On the RatingReviewPage, add a prominent 'Submit Review' button at the bottom styled in the Medical Blue theme. The button must be disabled until: (a) a star rating is selected, and (b) the review text area is not empty. On click, simulate a successful review submission (mock — store the review in local component state and display an inline success message such as 'Thank you! Your review has been submitted.'). After submission, disable all form fields and the Submit button to prevent re-submission. Include a 'Go to Home' button below the success message that navigates to `/`.",
+      "reqIds": [
+        "REQ-67"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-pages-postconsultationpage-tsx-to-add-a-rate-review-action-card-in-the-existing-2-column-action-cards-grid-the-card-must-display-a-icon-the-label-rate-review-and-a-brief-description-such-as-share-your-feedback-and-rate-your-doctor-clicking-the-card-navigates-to-rating-review-passing-doctorid-bookingid-consultationtype-date-timeslot-and-patientname-as-query-params-the-card-must-have-consistent-height-hover-active-highlight-state-using-the-medical-blue-palette-and-follow-the-same-layout-as-the-other-action-cards-on-the-page",
+      "title": "Update `frontend/src/pages/PostConsultationPage.tsx` to add a 'Rate & Review' action card in the existing 2-column action cards grid. The card must display a ⭐ icon, the label 'Rate & Review', and a brief description such as 'Share your feedback and rate your doctor'. Clicking the card navigates to `/rating-review` passing `doctorId`, `bookingId`, `consultationType`, `date`, `timeSlot`, and `patientName` as query params. The card must have consistent height, hover/active highlight state using the Medical Blue palette, and follow the same layout as the other action cards on the page.",
+      "reqIds": [
+        "REQ-68"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-static-page-file-frontend-src-pages-databaseschemapage-tsx-that-displays-the-10-core-database-tables-users-doctors-specialties-doctor-schedules-appointments-payments-reviews-medical-records-corporate-accounts-and-subscriptions-as-individual-cards-arranged-in-a-responsive-grid-layout-each-card-must-show-the-table-name-as-a-heading-and-list-all-field-names-with-their-data-types-for-that-table-as-plain-text-rows-the-page-must-be-a-single-self-contained-react-functional-component-that-exports-a-default-component-it-must-contain-no-routing-logic-no-backend-or-api-calls-no-database-connections-no-state-management-no-usestate-usereducer-or-context-no-external-library-imports-beyond-react-itself-and-tailwind-css-classes-no-animations-no-reusable-sub-components-no-dynamic-rendering-no-map-conditional-rendering-or-computed-values-no-props-and-no-hooks-no-useeffect-usestate-useref-etc-all-content-must-be-written-as-hardcoded-jsx-styling-must-follow-the-existing-medical-blue-theme-using-tailwind-utility-classes-consistent-with-the-rest-of-the-application",
+      "title": "Create a new static page file `frontend/src/pages/DatabaseSchemaPage.tsx` that displays the 10 core database tables — Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, and Subscriptions — as individual cards arranged in a responsive grid layout. Each card must show the table name as a heading and list all field names (with their data types) for that table as plain text rows. The page must be a single, self-contained React functional component that exports a default component. It must contain no routing logic, no backend or API calls, no database connections, no state management (no useState, useReducer, or context), no external library imports beyond React itself and Tailwind CSS classes, no animations, no reusable sub-components, no dynamic rendering (no .map, conditional rendering, or computed values), no props, and no hooks (no useEffect, useState, useRef, etc.). All content must be written as hardcoded JSX. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+      "reqIds": [
+        "REQ-69"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -555,6 +675,24 @@
     {
       "id": "AR-18",
       "summary": "Build consultation execution features: Online consultation includes Secure Video, Chat, File Upload, and e-Prescription; Home Visit consultation includes Live Tracking, ETA, and Contact Doctor.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Build Post-Consultation screen: user can Download Prescription, Order Medicines, Book Lab Tests, and Schedule a Follow-up appointment.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Build Rating & Review screen: shown 2 hours after consultation, allows user to Rate Doctor (star rating), Write a Review (text), and indicate if they would Recommend the doctor.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Create a static Database Schema Viewer page showing the 10 core tables (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) with their fields in clean cards — pure static UI, no routing/API/state/hooks/animations/external libs.",
       "reqIds": [],
       "status": "pending"
     }

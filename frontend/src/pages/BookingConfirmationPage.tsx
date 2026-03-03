@@ -14,6 +14,7 @@ import {
   Bell,
   Video,
   MapPin,
+  ClipboardCheck,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -122,6 +123,20 @@ export default function BookingConfirmationPage() {
       search: {
         doctorId,
         bookingId,
+        date,
+        timeSlot,
+        patientName,
+      },
+    });
+  };
+
+  const handlePostConsultationActions = () => {
+    navigate({
+      to: '/post-consultation',
+      search: {
+        doctorId,
+        bookingId,
+        consultationType,
         date,
         timeSlot,
         patientName,
@@ -336,6 +351,28 @@ export default function BookingConfirmationPage() {
             </Button>
           </div>
         )}
+
+        {/* Post-Consultation Actions */}
+        <div className="bg-white rounded-2xl border-2 border-primary/20 shadow-soft p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <ClipboardCheck className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <h2 className="font-heading text-base font-semibold text-gray-800">
+              Post-Consultation Actions
+            </h2>
+          </div>
+          <p className="text-xs text-gray-500 mb-4">
+            After your consultation, download your prescription, order medicines, book lab tests, or schedule a follow-up.
+          </p>
+          <Button
+            onClick={handlePostConsultationActions}
+            className="w-full h-12 text-base font-bold rounded-xl bg-primary text-white hover:bg-primary/90 transition-all"
+          >
+            <ClipboardCheck className="w-5 h-5 mr-2" />
+            Post-Consultation Actions
+          </Button>
+        </div>
 
         {/* What's Next Card */}
         <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5">
