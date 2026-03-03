@@ -1,14 +1,37 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T09:59:48.159Z",
-  "summary": "The diff shows that frontend/src/components/Header.tsx was modified to display '+91 9700104108' as the emergency phone number in the top bar's <strong> element, which directly satisfies REQ-18. The file summary also confirms this change. No other header content or styling appears to have been altered beyond this text replacement.",
+  "generatedAt": "2026-03-03T10:08:49.827Z",
+  "summary": "The diff implements both REQ-19 and REQ-20 largely as specified. DoctorCard.tsx provides all required card fields (avatar/placeholder, name, qualification, specialty, experience, star rating with icons + numeric, fee, consultation mode badges, Book Now button). DoctorListingPage.tsx adds the four sort controls (Highest Rated, Lowest Fee, Most Experienced, Available Today) with active highlighting and real-time reordering. Mock data is sourced from mockDoctors.ts. The 'Available Today' filter correctly uses isTodayAvailable. Sorting state is held in component-level useState which persists as long as the component is mounted across specialty filter navigation. A few unrequested features were added.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.97,
+  "hallucinated_features": [
+    {
+      "description": "Search/filter input field above the doctor card list",
+      "reason": "DoctorListingPage.tsx includes a search query state and search input UI that filters doctors by name, specialty, or qualification. This feature was not requested in REQ-19 or REQ-20.",
+      "evidence": [
+        "frontend/src/pages/DoctorListingPage.tsx"
+      ]
+    },
+    {
+      "description": "Available Today green dot indicator on DoctorCard avatar",
+      "reason": "DoctorCard.tsx renders a green dot badge on the avatar when the doctor is available today. This visual indicator on the card was not part of the card field requirements in REQ-19.",
+      "evidence": [
+        "frontend/src/components/DoctorCard.tsx"
+      ]
+    },
+    {
+      "description": "Hover accent bar animation on DoctorCard",
+      "reason": "A top accent bar that animates its width on hover was added to DoctorCard. This animated decoration was not specified in any requirement.",
+      "evidence": [
+        "frontend/src/components/DoctorCard.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.82,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/Header.tsx",
+    "frontend/src/components/DoctorCard.tsx",
+    "frontend/src/pages/DoctorListingPage.tsx",
     "project_state.json"
   ]
 }

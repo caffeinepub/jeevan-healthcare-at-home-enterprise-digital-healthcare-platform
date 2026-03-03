@@ -144,8 +144,9 @@ export default function DoctorListingPage() {
       {/* Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Sort + Count Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-4 mb-6">
+          {/* Count + fallback notice */}
+          <div className="flex items-center gap-3 flex-wrap">
             <Badge variant="secondary" className="text-sm font-semibold px-3 py-1">
               {effectiveDoctors.length} Doctor{effectiveDoctors.length !== 1 ? 's' : ''} Found
             </Badge>
@@ -157,29 +158,39 @@ export default function DoctorListingPage() {
           </div>
 
           {/* Sort Controls */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <SlidersHorizontal className="w-4 h-4 text-gray-400 shrink-0" />
-            <span className="text-xs text-gray-500 mr-1">Sort:</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-1.5 mr-1">
+              <SlidersHorizontal className="w-4 h-4 text-gray-500 shrink-0" />
+              <span className="text-sm font-semibold text-gray-600">Sort by:</span>
+            </div>
             {SORT_OPTIONS.map(({ key, label, icon: Icon }) => (
               <button
                 key={key}
                 onClick={() => setActiveSort(activeSort === key ? null : key)}
-                className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-all whitespace-nowrap ${
+                className={`inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
                   activeSort === key
-                    ? 'bg-blue-700 text-white border-blue-700 shadow-sm'
-                    : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-700'
+                    ? 'bg-blue-700 text-white border-blue-700 shadow-md'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50'
                 }`}
               >
-                <Icon className="w-3 h-3" />
+                <Icon className="w-3.5 h-3.5" />
                 {label}
               </button>
             ))}
+            {activeSort && (
+              <button
+                onClick={() => setActiveSort(null)}
+                className="text-xs text-gray-400 hover:text-gray-600 underline ml-1 transition-colors"
+              >
+                Clear
+              </button>
+            )}
           </div>
         </div>
 
         {/* Doctor Cards Grid */}
         {effectiveDoctors.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             {effectiveDoctors.map((doctor) => (
               <DoctorCard key={doctor.id} doctor={doctor} onBookNow={handleBookNow} />
             ))}
@@ -193,6 +204,8 @@ export default function DoctorListingPage() {
             <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">
               {searchQuery
                 ? `No results for "${searchQuery}". Try a different search term.`
+                : activeSort === 'available-today'
+                ? 'No doctors are available today. Try a different sort option.'
                 : 'No doctors available for this specialty at the moment.'}
             </p>
             <Button

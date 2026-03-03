@@ -1,21 +1,47 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace phone number in header with +91 9700104108",
+  "title": "Doctor Listing Screen — Full Card Fields + Sorting Controls",
   "requirements": [
     {
-      "id": "REQ-18",
-      "summary": "Update the phone number displayed in the Header component's top bar to '+91 9700104108'",
+      "id": "REQ-19",
+      "summary": "Update DoctorCard component to display all required fields including photo, full name, qualification, specialty, experience, star rating, starting fee, consultation modes as badge icons, and a prominent Book Now button styled in Medical Blue theme",
       "acceptanceCriteria": [
-        "The header top bar displays '+91 9700104108' as the phone number.",
-        "No other header content or styling is changed.",
-        "The change is visible on all pages that use the shared Header component."
+        "Each doctor card on DoctorListingPage renders a photo or avatar placeholder when no image is available.",
+        "Each card shows the doctor's full name, qualification (e.g., MBBS, MD), specialty, and years of experience.",
+        "Each card shows a star rating with both a numeric value and star icons.",
+        "Each card shows the starting consultation fee.",
+        "Each card shows available consultation modes (Online / Clinic / Home Visit) as small badge icons.",
+        "Each card includes a prominent 'Book Now' button styled in the Medical Blue theme.",
+        "Card layout is consistent and readable on mobile, tablet, and desktop viewports.",
+        "Mock data is sourced exclusively from `frontend/src/lib/mockDoctors.ts`."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Header.tsx",
+          "path": "frontend/src/components/DoctorCard.tsx",
           "operation": "modify",
-          "description": "In the Header component, locate the <strong> element inside the top bar's phone/contact span (within the first span element of the top bar) and replace its text content from the current phone number to '+91 9700104108'. This change updates the displayed contact phone number visible in the header across all application pages without modifying any other styling, layout, or content."
+          "description": "Expand the DoctorCard component to display all required doctor fields. Add a profile photo/avatar section at the top using an img element with fallback to a placeholder icon when no photo is available. Display the doctor's full name as a prominent heading, followed by qualification (e.g., MBBS, MD) and specialty on separate lines. Show years of experience with an appropriate label. Render the star rating using both numeric value (e.g., 4.5) and star icons (filled/half-filled based on rating). Display the starting consultation fee prominently. Add a consultation modes section showing available modes (Online, Clinic, Home Visit) as small badge components with appropriate icons. Include a prominent 'Book Now' button at the bottom styled with the Medical Blue theme colors (bg-brand-primary text-white). Ensure the card layout uses responsive Tailwind classes (flex/grid) to maintain consistency across mobile, tablet, and desktop viewports. Use the MockDoctor interface from mockDoctors.ts to type the component props correctly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "summary": "Add sorting controls above the doctor card list on DoctorListingPage with four options: Highest Rated, Lowest Fee, Most Experienced, and Available Today, with real-time re-ordering and visual highlighting of the active sort option",
+      "acceptanceCriteria": [
+        "A sorting control is visible above the doctor card list on DoctorListingPage.",
+        "The control offers exactly four options: 'Highest Rated', 'Lowest Fee', 'Most Experienced', 'Available Today'.",
+        "The currently active sort option is visually distinct (e.g., filled/highlighted chip) using the Medical Blue theme.",
+        "Selecting 'Highest Rated' reorders cards by descending star rating without a page reload.",
+        "Selecting 'Lowest Fee' reorders cards by ascending starting consultation fee without a page reload.",
+        "Selecting 'Most Experienced' reorders cards by descending years of experience without a page reload.",
+        "Selecting 'Available Today' filters the list to only doctors whose mock availability includes today's day of the week.",
+        "Sorting state is preserved when navigating between specialty filters on the same screen."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DoctorListingPage.tsx",
+          "operation": "modify",
+          "description": "Add a sorting control section above the doctor card list. Create a state variable using useState to track the currently active sort option (one of: 'highest-rated', 'lowest-fee', 'most-experienced', 'available-today'). Render four clickable chip/button elements for the sort options, styled with Tailwind classes. Apply Medical Blue theme styling (bg-brand-primary text-white) to the active sort option and a neutral style (bg-gray-200 text-gray-700) to inactive options. Implement sorting logic that processes the filtered doctors array based on the active sort: for 'highest-rated', sort by rating descending; for 'lowest-fee', sort by startingFee ascending; for 'most-experienced', sort by experience descending; for 'available-today', filter to only doctors whose availability array includes the current day of the week (use JavaScript's Date.getDay() to get the day index and map it to day names). Apply the sorting logic after the specialty filter but before rendering the doctor cards. Ensure sorting updates the displayed list in real time without page reload by re-rendering the component when the sort state changes. The sorting state persists naturally within the component lifecycle as long as the user stays on the page."
         }
       ]
     }

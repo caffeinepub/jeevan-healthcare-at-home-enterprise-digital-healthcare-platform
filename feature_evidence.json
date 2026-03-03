@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-in-frontend-src-components-header-tsx-locate-the-strong-element-inside-the-top-bar-s-phone-contact-span-xpath-html-1-body-1-div-1-div-1-header-1-div-1-span-1-strong-1-and-replace-its-text-content-with-91-9700104108",
-      "featureTitle": "In `frontend/src/components/Header.tsx`, locate the `<strong>` element inside the top bar's phone/contact span (XPath: /html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/span[1]/strong[1]) and replace its text content with '+91 9700104108'.",
+      "featureId": "feature-update-the-doctor-listing-screen-frontend-src-pages-doctorlistingpage-tsx-so-that-each-doctor-card-displays-all-of-the-following-fields-doctor-photo-avatar-placeholder-if-no-image-full-name-qualification-e-g-mbbs-md-specialty-years-of-experience-star-rating-numeric-value-star-icons-starting-consultation-fee-available-consultation-modes-online-clinic-home-visit-as-small-badge-icons-and-a-prominent-book-now-button-styled-in-the-medical-blue-theme-the-card-layout-must-be-clean-readable-and-consistent-across-all-viewport-sizes-reuse-the-shared-mock-doctor-dataset-from-frontend-src-lib-mockdoctors-ts-as-the-single-source-of-truth",
+      "featureTitle": "Update the Doctor Listing Screen (`frontend/src/pages/DoctorListingPage.tsx`) so that each doctor card displays all of the following fields: doctor photo (avatar/placeholder if no image), full name, qualification (e.g., MBBS, MD), specialty, years of experience, star rating (numeric value + star icons), starting consultation fee, available consultation modes (Online / Clinic / Home Visit) as small badge icons, and a prominent 'Book Now' button styled in the Medical Blue theme. The card layout must be clean, readable, and consistent across all viewport sizes. Reuse the shared mock doctor dataset from `frontend/src/lib/mockDoctors.ts` as the single source of truth.",
       "files": [
-        "frontend/src/components/Header.tsx"
+        "frontend/src/components/DoctorCard.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,7 +21,31 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-18"
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-sorting-control-above-the-doctor-card-list-on-the-doctor-listing-screen-frontend-src-pages-doctorlistingpage-tsx-the-control-must-offer-four-sort-options-highest-rated-lowest-fee-most-experienced-and-available-today-the-active-sort-option-must-be-visually-highlighted-using-the-medical-blue-theme-when-a-sort-option-is-selected-the-doctor-card-list-must-re-order-in-real-time-without-a-page-reload-available-today-must-filter-the-list-to-only-show-doctors-whose-mock-availability-includes-the-current-day-of-the-week",
+      "featureTitle": "Add a sorting control above the doctor card list on the Doctor Listing Screen (`frontend/src/pages/DoctorListingPage.tsx`). The control must offer four sort options: 'Highest Rated', 'Lowest Fee', 'Most Experienced', and 'Available Today'. The active sort option must be visually highlighted using the Medical Blue theme. When a sort option is selected, the doctor card list must re-order in real time without a page reload. 'Available Today' must filter the list to only show doctors whose mock availability includes the current day of the week.",
+      "files": [
+        "frontend/src/pages/DoctorListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "qr-code@1.0.0",
+        "camera@1.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
       ],
       "confidence": "high"
     }
