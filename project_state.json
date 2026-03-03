@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 39,
+  "projectStateVersion": 41,
   "summary": "Jeevan HealthCare at Home: full enterprise-grade AI-powered home healthcare super app with React Native frontend, Node.js/Express/MongoDB backend, role-based dashboards (Patient, Doctor, Nurse, Corporate HR, Admin, Super Admin), 7 core modules (Home Healthcare, Preventive/Corporate, Digital Health, Mother & Child, Wellness, Specialist Care, B2B), AI symptom checker embedded in Health tab, Razorpay payments, Firebase notifications, WhatsApp API, seeded sample data, web admin panel, and an enterprise-grade Doctor Consultation / Specialist Booking system with 16 specialty categories, end-to-end booking flow (slot selection, patient details, payment, confirmation, reminders, video consultation, post-consultation, reviews), and admin panel for doctor/slot/revenue management.",
   "architectural_notes": [
     "Symptom Checker is an embedded component inside the Health Tab (Digital Health Module), NOT a standalone route. No /symptom-checker entry in root layout.",
@@ -567,6 +567,14 @@
         "REQ-69"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-pages-databaseschemapage-tsx-so-that-each-of-the-10-table-cards-users-doctors-specialties-doctor-schedules-appointments-payments-reviews-medical-records-corporate-accounts-subscriptions-displays-the-following-hardcoded-content-in-order-1-table-name-as-a-bold-heading-2-a-one-line-plain-english-description-of-the-table-s-purpose-3-a-field-list-where-each-row-shows-column-name-data-type-4-the-primary-key-field-clearly-labelled-e-g-with-a-pk-badge-or-inline-label-and-5-any-foreign-key-fields-clearly-labelled-with-a-fk-badge-or-inline-label-indicating-the-referenced-table-all-content-must-remain-hardcoded-jsx-no-map-no-usestate-no-useeffect-no-hooks-no-external-library-imports-beyond-react-and-tailwind-css-classes-the-component-must-remain-a-single-self-contained-default-export-functional-component-with-no-props-no-routing-logic-no-backend-calls-and-no-animations-styling-must-follow-the-existing-medical-blue-theme-using-tailwind-utility-classes-consistent-with-the-rest-of-the-application",
+      "title": "Update `frontend/src/pages/DatabaseSchemaPage.tsx` so that each of the 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) displays the following hardcoded content in order: (1) Table Name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled (e.g., with a 'PK' badge or inline label), and (5) any Foreign Key fields clearly labelled with a 'FK' badge or inline label indicating the referenced table. All content must remain hardcoded JSX — no .map(), no useState, no useEffect, no hooks, no external library imports beyond React and Tailwind CSS classes. The component must remain a single self-contained default-export functional component with no props, no routing logic, no backend calls, and no animations. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+      "reqIds": [
+        "REQ-70"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -693,6 +701,12 @@
     {
       "id": "AR-21",
       "summary": "Create a static Database Schema Viewer page showing the 10 core tables (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) with their fields in clean cards — pure static UI, no routing/API/state/hooks/animations/external libs.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Update the Database Schema page to display all 10 tables as clean cards with: Table Name (bold heading), short 1-line description, field list (Column Name – Data Type), Primary Key label, and Foreign Key labels — all as hardcoded HTML/JSX, no dynamic rendering.",
       "reqIds": [],
       "status": "pending"
     }

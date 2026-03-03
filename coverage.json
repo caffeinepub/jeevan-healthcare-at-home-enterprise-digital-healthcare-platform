@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-03T12:05:59.449Z",
+  "generatedAt": "2026-03-03T12:13:46.251Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,8 +11,8 @@
     "implemented": 1,
     "items": [
       {
-        "id": "REQ-69",
-        "summary": "Create a new static page file `frontend/src/pages/DatabaseSchemaPage.tsx` that displays the 10 core database tables — Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, and Subscriptions — as individual cards arranged in a responsive grid layout. Each card must show the table name as a heading and list all field names (with their data types) for that table as plain text rows. The page must be a single, self-contained React functional component that exports a default component. It must contain no routing logic, no backend or API calls, no database connections, no state management (no useState, useReducer, or context), no external library imports beyond React itself and Tailwind CSS classes, no animations, no reusable sub-components, no dynamic rendering (no .map, conditional rendering, or computed values), no props, and no hooks (no useEffect, useState, useRef, etc.). All content must be written as hardcoded JSX. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
+        "id": "REQ-70",
+        "summary": "Update `frontend/src/pages/DatabaseSchemaPage.tsx` so that each of the 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) displays the following hardcoded content in order: (1) Table Name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled (e.g., with a 'PK' badge or inline label), and (5) any Foreign Key fields clearly labelled with a 'FK' badge or inline label indicating the referenced table. All content must remain hardcoded JSX — no .map(), no useState, no useEffect, no hooks, no external library imports beyond React and Tailwind CSS classes. The component must remain a single self-contained default-export functional component with no props, no routing logic, no backend calls, and no animations. Styling must follow the existing Medical Blue theme using Tailwind utility classes consistent with the rest of the application.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/DatabaseSchemaPage.tsx"

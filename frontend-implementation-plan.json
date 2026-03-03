@@ -1,32 +1,28 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add static Database Schema Viewer page",
+  "title": "Update Database Schema Page with enhanced card layout (description, PK/FK labels)",
   "requirements": [
     {
-      "id": "REQ-69",
-      "summary": "Create a static DatabaseSchemaPage.tsx displaying 10 core database tables (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions) as hardcoded cards in a responsive grid layout, with no hooks, state, props, routing, API calls, animations, or dynamic rendering—only static JSX with Medical Blue theme styling",
+      "id": "REQ-70",
+      "summary": "Update DatabaseSchemaPage.tsx to display 10 table cards with enhanced content including table name, description, field list, and PK/FK labels using hardcoded JSX",
       "acceptanceCriteria": [
-        "The file `frontend/src/pages/DatabaseSchemaPage.tsx` exists and exports a default React component.",
-        "The component contains exactly 10 table cards: Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions.",
-        "Each card displays the table name as a heading and lists all field names with their data types as hardcoded static text.",
-        "The file contains no import statements other than React (and optionally React types).",
-        "The file contains no useState, useReducer, useEffect, useRef, useContext, useCallback, useMemo, or any other hook calls.",
-        "The file contains no function props, no component props interface, and the exported component accepts no props.",
-        "The file contains no .map(), .filter(), .reduce(), or any array/object iteration for rendering.",
-        "The file contains no conditional rendering (no ternary operators or && short-circuit rendering).",
-        "The file contains no routing imports or navigation logic (no useNavigate, Link, router, etc.).",
-        "The file contains no fetch, axios, or any API call.",
-        "The file contains no CSS keyframe animations or transition classes.",
-        "All card content is written as explicit, hardcoded JSX elements.",
-        "The page renders correctly in the browser with all 10 table cards visible and readable.",
-        "The styling uses Medical Blue theme Tailwind classes consistent with the rest of the application."
+        "All 10 table cards are rendered: Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions.",
+        "Each card displays the table name as a bold heading.",
+        "Each card displays a single-line description of the table's purpose.",
+        "Each card lists all fields in 'Column Name – Data Type' format.",
+        "The Primary Key field on each card is clearly labelled with a 'PK' indicator.",
+        "All Foreign Key fields on each card are clearly labelled with a 'FK' indicator and the referenced table name.",
+        "No .map(), conditional rendering, hooks (useState, useEffect, useRef, etc.), or external library imports beyond React and Tailwind are present in the file.",
+        "All content is hardcoded JSX — no dynamic rendering or computed values.",
+        "Styling uses Tailwind utility classes consistent with the Medical Blue theme used elsewhere in the application.",
+        "The component is a single default-export functional component with no props."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/DatabaseSchemaPage.tsx",
-          "operation": "create",
-          "description": "Create a new static React functional component file that exports a default component displaying 10 database table schemas as hardcoded JSX cards in a responsive grid. Each card shows the table name as a heading and lists all field names with data types as plain text rows. The file must contain no hooks (useState, useEffect, useRef, etc.), no state management, no props, no routing logic, no API calls, no animations, no external library imports beyond React, no dynamic rendering (.map, conditionals), and no reusable sub-components. All content is written as explicit JSX elements. Use Tailwind utility classes consistent with the Medical Blue theme (jeevan-primary, jeevan-accent, etc.) for styling the grid container, cards, headings, and field lists to match the existing application design system."
+          "operation": "modify",
+          "description": "Replace the existing DatabaseSchemaPage component with a hardcoded JSX implementation that renders exactly 10 table cards (Users, Doctors, Specialties, Doctor_Schedules, Appointments, Payments, Reviews, Medical_Records, Corporate_Accounts, Subscriptions). Each card must display: (1) table name as a bold heading, (2) a one-line plain-English description of the table's purpose, (3) a field list where each row shows 'Column Name – Data Type', (4) the Primary Key field clearly labelled with a 'PK' badge (e.g., inline span with Tailwind classes like 'bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-semibold'), and (5) any Foreign Key fields clearly labelled with a 'FK' badge and the referenced table name (e.g., 'FK → TableName'). Remove all .map() calls, hooks (useState, useEffect, useRef), conditional rendering logic, and external library imports beyond React. Use only Tailwind utility classes for styling, consistent with the Medical Blue theme (using colors like blue-50, blue-600, blue-100, gray-700, etc.). Maintain the component as a single default-export functional component with no props, no routing logic, no backend calls, and no animations. Ensure all content is hardcoded JSX with no dynamic rendering or computed values."
         }
       ]
     }

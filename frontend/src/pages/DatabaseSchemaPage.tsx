@@ -16,573 +16,755 @@ export default function DatabaseSchemaPage() {
           <div className="mt-3 mx-auto w-20 h-1 rounded-full bg-jeevan-primary" />
         </div>
 
+        {/* Legend */}
+        <div className="flex items-center gap-4 mb-8 justify-center flex-wrap">
+          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+            <span className="inline-block bg-blue-600 text-white px-2 py-0.5 rounded text-xs font-semibold">PK</span>
+            <span>Primary Key</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+            <span className="inline-block bg-amber-500 text-white px-2 py-0.5 rounded text-xs font-semibold">FK</span>
+            <span>Foreign Key</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-sm text-gray-600">
+            <span className="inline-block bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-mono text-xs border border-gray-200">TYPE</span>
+            <span>Data Type</span>
+          </div>
+        </div>
+
         {/* Schema Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {/* ── Users ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-primary px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Users
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Authentication &amp; identity</p>
+          {/* ── 1. Users ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-jeevan-primary px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Users</h2>
+              <p className="text-blue-100 text-xs mt-1">Stores all platform user accounts, roles, and identity information.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">user_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">UUID / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* user_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">user_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">UUID</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">name</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
+              {/* name */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">name</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">email</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(150)</span>
+              {/* email */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">email</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(150)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">phone</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(20)</span>
+              {/* phone */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">phone</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(20)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">role</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* role */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">role</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">is_active</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
+              {/* is_active */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">is_active</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">principal_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
+              {/* principal_id */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">principal_id</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">insurance_details</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
+              {/* insurance_details */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">insurance_details</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">updated_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Doctors ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-primary px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Doctors
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Physician profiles &amp; credentials</p>
-            </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">doctor_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">user_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">specialization</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">qualifications</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT[]</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">experience</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT (years)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">consultation_fee</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">availability</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">profile_photo</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT (URL)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">certifications</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT[]</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">rating</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">total_consultations</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">status</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(20)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* updated_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">updated_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
             </div>
           </div>
 
-          {/* ── Specialties ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-primary px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Specialties
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Medical specialty categories</p>
+          {/* ── 2. Doctors ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-jeevan-primary px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Doctors</h2>
+              <p className="text-blue-100 text-xs mt-1">Physician profiles including credentials, fees, and availability status.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">specialty_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* doctor_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">doctor_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">name</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
+              {/* user_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">user_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Users</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">slug</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
+              {/* specialization */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">specialization</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">description</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
+              {/* qualifications */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">qualifications</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT[]</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">icon_url</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT (URL)</span>
+              {/* experience */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">experience</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">INT (years)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">category</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(50)</span>
+              {/* consultation_fee */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">consultation_fee</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">is_active</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
+              {/* availability */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">availability</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">display_order</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT</span>
+              {/* profile_photo */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">profile_photo</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT (URL)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* certifications */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">certifications</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT[]</span>
               </div>
-            </div>
-          </div>
-
-          {/* ── Doctor_Schedules ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-teal px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Doctor_Schedules
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Availability &amp; time slots</p>
-            </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">schedule_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+              {/* rating */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">rating</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">doctor_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* total_consultations */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">total_consultations</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">day_of_week</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* status */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">status</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(20)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">start_time</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIME</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">end_time</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIME</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">slot_duration_mins</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">consultation_type</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">max_patients</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">is_active</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">effective_from</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">effective_until</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
             </div>
           </div>
 
-          {/* ── Appointments ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-teal px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Appointments
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Booking &amp; consultation records</p>
+          {/* ── 3. Specialties ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-jeevan-primary px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Specialties</h2>
+              <p className="text-blue-100 text-xs mt-1">Lookup table of medical specialty categories available on the platform.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">appointment_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* specialty_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">specialty_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">doctor_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* name */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">name</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">patient_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* slug */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">slug</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">customer_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* description */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">description</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">scheduled_datetime</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* icon_url */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">icon_url</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT (URL)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">status</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* category */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">category</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(50)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">consultation_type</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* is_active */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">is_active</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">fee</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
+              {/* display_order */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">display_order</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">INT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">notes</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Payments ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-teal px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Payments
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Transaction &amp; billing records</p>
-            </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">payment_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">appointment_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">customer_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">amount</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">currency</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(10)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">payment_method</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">payment_status</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">transaction_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">gst_amount</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">discount_amount</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">payment_date</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
             </div>
           </div>
 
-          {/* ── Reviews ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-primary px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Reviews
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Patient ratings &amp; feedback</p>
+          {/* ── 4. Doctor_Schedules ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-blue-700 px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Doctor_Schedules</h2>
+              <p className="text-blue-100 text-xs mt-1">Defines weekly availability windows and time slots for each doctor.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">review_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* schedule_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">schedule_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">appointment_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* doctor_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">doctor_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Doctors</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">patient_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* day_of_week */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">day_of_week</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">doctor_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* start_time */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">start_time</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIME</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">rating</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT (1–5)</span>
+              {/* end_time */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">end_time</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIME</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">review_text</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
+              {/* slot_duration_mins */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">slot_duration_mins</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">INT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">would_recommend</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
+              {/* consultation_type */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">consultation_type</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">is_verified</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
+              {/* max_patients */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">max_patients</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">INT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">submitted_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* is_active */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">is_active</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">review_window_hrs</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT</span>
+              {/* effective_from */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">effective_from</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
               </div>
-            </div>
-          </div>
-
-          {/* ── Medical_Records ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-primary px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Medical_Records
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Clinical notes &amp; prescriptions</p>
-            </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">record_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">appointment_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">doctor_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">patient_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">soap_notes</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">prescription_file</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT (URL)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">diagnostic_requests</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT[]</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">followup_date</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">blood_group</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(5)</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">chronic_conditions</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TEXT[]</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">updated_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* effective_until */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">effective_until</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
               </div>
             </div>
           </div>
 
-          {/* ── Corporate_Accounts ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-teal px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Corporate_Accounts
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">B2B &amp; enterprise clients</p>
+          {/* ── 5. Appointments ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-blue-700 px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Appointments</h2>
+              <p className="text-blue-100 text-xs mt-1">Records all patient-doctor consultation bookings and their current status.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">account_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* appointment_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">appointment_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">company_name</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(150)</span>
+              {/* doctor_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">doctor_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Doctors</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">admin_user_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* patient_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">patient_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Patients</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">contact_email</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(150)</span>
+              {/* customer_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">customer_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Customers</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">contact_phone</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(20)</span>
+              {/* scheduled_datetime */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">scheduled_datetime</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">gst_number</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(20)</span>
+              {/* status */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">status</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">discount_percent</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
+              {/* consultation_type */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">consultation_type</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">employee_count</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">INT</span>
+              {/* fee */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">fee</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">contract_start</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
+              {/* notes */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">notes</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">contract_end</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">status</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
             </div>
           </div>
 
-          {/* ── Subscriptions ── */}
-          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
-            <div className="bg-jeevan-teal px-5 py-3">
-              <h2 className="text-white font-heading font-semibold text-lg tracking-wide">
-                Subscriptions
-              </h2>
-              <p className="text-blue-100 text-xs mt-0.5">Plans &amp; recurring memberships</p>
+          {/* ── 6. Payments ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-blue-700 px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Payments</h2>
+              <p className="text-blue-100 text-xs mt-1">Tracks all financial transactions linked to appointments and services.</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">subscription_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / PK</span>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* payment_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">payment_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">customer_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BIGINT / FK</span>
+              {/* appointment_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">appointment_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Appointments</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">plan_name</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
+              {/* user_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">user_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Users</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">plan_type</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* amount */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">amount</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">price</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
+              {/* currency */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">currency</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(10)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">billing_cycle</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* payment_method */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">payment_method</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">discount_percent</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">FLOAT</span>
+              {/* payment_status */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">payment_status</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">start_date</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
+              {/* transaction_id */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">transaction_id</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">end_date</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">DATE</span>
+              {/* payment_date */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">payment_date</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">auto_renew</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">BOOLEAN</span>
+              {/* gst_amount */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">gst_amount</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">status</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">ENUM</span>
+              {/* discount_amount */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">discount_amount</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">stripe_subscription_id</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">VARCHAR(100)</span>
+            </div>
+          </div>
+
+          {/* ── 7. Reviews ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-jeevan-primary px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Reviews</h2>
+              <p className="text-blue-100 text-xs mt-1">Patient ratings and written feedback submitted after consultations.</p>
+            </div>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* review_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">review_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="font-medium text-jeevan-text">created_at</span>
-                <span className="text-muted-foreground font-mono text-xs bg-jeevan-light-blue px-2 py-0.5 rounded">TIMESTAMP</span>
+              {/* appointment_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">appointment_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Appointments</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* doctor_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">doctor_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Doctors</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* patient_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">patient_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Patients</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* rating */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">rating</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TINYINT (1–5)</span>
+              </div>
+              {/* review_text */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">review_text</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
+              </div>
+              {/* would_recommend */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">would_recommend</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
+              </div>
+              {/* is_verified */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">is_verified</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
+              </div>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── 8. Medical_Records ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-jeevan-primary px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Medical_Records</h2>
+              <p className="text-blue-100 text-xs mt-1">Stores SOAP notes, prescriptions, and diagnostic requests per consultation.</p>
+            </div>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* note_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">note_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* appointment_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">appointment_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Appointments</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* doctor_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">doctor_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Doctors</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* patient_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">patient_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Patients</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* soap_notes */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">soap_notes</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT</span>
+              </div>
+              {/* prescription_file */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">prescription_file</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT (URL)</span>
+              </div>
+              {/* followup_date */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">followup_date</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
+              </div>
+              {/* diagnostic_requests */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">diagnostic_requests</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TEXT[]</span>
+              </div>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
+              </div>
+              {/* updated_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">updated_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── 9. Corporate_Accounts ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-blue-800 px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Corporate_Accounts</h2>
+              <p className="text-blue-100 text-xs mt-1">Manages B2B corporate clients with bulk health plan subscriptions.</p>
+            </div>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* corporate_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">corporate_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* admin_user_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">admin_user_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Users</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* company_name */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">company_name</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(200)</span>
+              </div>
+              {/* gst_number */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">gst_number</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(20)</span>
+              </div>
+              {/* contact_email */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">contact_email</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(150)</span>
+              </div>
+              {/* contact_phone */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">contact_phone</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(20)</span>
+              </div>
+              {/* employee_count */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">employee_count</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">INT</span>
+              </div>
+              {/* discount_percentage */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">discount_percentage</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
+              </div>
+              {/* contract_start */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">contract_start</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
+              </div>
+              {/* contract_end */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">contract_end</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
+              </div>
+              {/* status */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">status</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
+              </div>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── 10. Subscriptions ── */}
+          <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden flex flex-col">
+            <div className="bg-blue-800 px-5 py-4">
+              <h2 className="text-white font-heading font-bold text-lg tracking-wide">Subscriptions</h2>
+              <p className="text-blue-100 text-xs mt-1">Tracks individual and corporate health plan subscriptions and renewal cycles.</p>
+            </div>
+            <div className="px-5 py-4 space-y-2.5 flex-1">
+              {/* subscription_id – PK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-semibold text-gray-800 truncate">subscription_id</span>
+                  <span className="shrink-0 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">PK</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* user_id – FK */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">user_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Users</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT</span>
+              </div>
+              {/* corporate_id – FK (nullable) */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium text-gray-700 truncate">corporate_id</span>
+                  <span className="shrink-0 bg-amber-500 text-white px-1.5 py-0.5 rounded text-xs font-semibold">FK</span>
+                  <span className="shrink-0 text-amber-700 text-xs">→ Corporate_Accounts</span>
+                </div>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded shrink-0">BIGINT?</span>
+              </div>
+              {/* plan_name */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">plan_name</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">VARCHAR(100)</span>
+              </div>
+              {/* plan_type */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">plan_type</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
+              </div>
+              {/* price */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">price</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
+              </div>
+              {/* billing_cycle */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">billing_cycle</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
+              </div>
+              {/* start_date */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">start_date</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
+              </div>
+              {/* end_date */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">end_date</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">DATE</span>
+              </div>
+              {/* discount_percentage */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">discount_percentage</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">FLOAT</span>
+              </div>
+              {/* status */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">status</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">ENUM</span>
+              </div>
+              {/* auto_renew */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">auto_renew</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">BOOLEAN</span>
+              </div>
+              {/* created_at */}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="font-medium text-gray-700">created_at</span>
+                <span className="text-gray-500 font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">TIMESTAMP</span>
               </div>
             </div>
           </div>
@@ -590,11 +772,9 @@ export default function DatabaseSchemaPage() {
         </div>
 
         {/* Footer note */}
-        <div className="mt-10 text-center text-xs text-muted-foreground">
-          <span className="inline-block bg-white border border-border rounded-full px-4 py-1.5 shadow-xs">
-            10 core tables &nbsp;·&nbsp; Jeevan HealthCare Platform Schema
-          </span>
-        </div>
+        <p className="text-center text-xs text-muted-foreground mt-10">
+          10 tables · Jeevan HealthCare Platform Schema · All fields are hardcoded for reference
+        </p>
 
       </div>
     </div>
