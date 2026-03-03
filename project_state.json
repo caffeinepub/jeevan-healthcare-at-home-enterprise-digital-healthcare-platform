@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 23,
+  "projectStateVersion": 33,
   "summary": "Jeevan HealthCare at Home: full enterprise-grade AI-powered home healthcare super app with React Native frontend, Node.js/Express/MongoDB backend, role-based dashboards (Patient, Doctor, Nurse, Corporate HR, Admin, Super Admin), 7 core modules (Home Healthcare, Preventive/Corporate, Digital Health, Mother & Child, Wellness, Specialist Care, B2B), AI symptom checker embedded in Health tab, Razorpay payments, Firebase notifications, WhatsApp API, seeded sample data, web admin panel, and an enterprise-grade Doctor Consultation / Specialist Booking system with 16 specialty categories, end-to-end booking flow (slot selection, patient details, payment, confirmation, reminders, video consultation, post-consultation, reviews), and admin panel for doctor/slot/revenue management.",
   "architectural_notes": [
     "Symptom Checker is an embedded component inside the Health Tab (Digital Health Module), NOT a standalone route. No /symptom-checker entry in root layout.",
@@ -207,6 +207,246 @@
         "REQ-24"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-select-date-time-slot-selection-page-at-route-book-slot-doctorid-the-page-must-receive-the-doctorid-selected-consultation-type-and-total-fee-as-route-query-parameters-passed-from-the-choose-consultation-type-screen-consultation-type-doctorid-register-this-route-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-used-for-other-booking-flow-routes",
+      "title": "Create a 'Select Date & Time' slot selection page at route `/book-slot/:doctorId`. The page must receive the `doctorId`, selected consultation type, and total fee as route/query parameters passed from the 'Choose Consultation Type' screen (`/consultation-type/:doctorId`). Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern used for other booking-flow routes.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-select-date-time-page-render-an-interactive-calendar-view-at-the-top-of-the-screen-the-calendar-must-display-the-current-month-with-selectable-dates-past-dates-must-be-visually-disabled-and-non-selectable-the-currently-selected-date-must-be-highlighted-using-the-medical-blue-theme-the-user-must-be-able-to-navigate-to-the-next-previous-month",
+      "title": "On the 'Select Date & Time' page, render an interactive calendar view at the top of the screen. The calendar must display the current month with selectable dates. Past dates must be visually disabled and non-selectable. The currently selected date must be highlighted using the Medical Blue theme. The user must be able to navigate to the next/previous month.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-below-the-calendar-on-the-select-date-time-page-display-the-available-time-slots-for-the-selected-date-in-30-minute-intervals-e-g-09-00-am-09-30-am-10-00-am-etc-use-mock-data-to-populate-available-and-unavailable-slots-available-slots-must-be-displayed-as-selectable-cards-buttons-unavailable-booked-slots-must-be-visually-distinct-and-non-selectable-slots-must-span-a-reasonable-clinic-day-e-g-09-00-am-07-00-pm-styling-must-follow-the-medical-blue-theme",
+      "title": "Below the calendar on the 'Select Date & Time' page, display the available time slots for the selected date in 30-minute intervals (e.g., 09:00 AM, 09:30 AM, 10:00 AM, etc.). Use mock data to populate available and unavailable slots. Available slots must be displayed as selectable cards/buttons; unavailable (booked) slots must be visually distinct and non-selectable. Slots must span a reasonable clinic day (e.g., 09:00 AM – 07:00 PM). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-slot-locking-logic-on-the-select-date-time-page-when-a-user-selects-an-available-slot-that-slot-must-be-immediately-marked-as-locked-in-local-component-state-and-a-5-minute-countdown-timer-must-be-displayed-prominently-near-the-slot-or-in-a-summary-bar-e-g-slot-held-for-04-32-if-the-user-does-not-complete-payment-i-e-does-not-proceed-to-the-next-step-within-5-minutes-the-slot-lock-must-expire-the-slot-must-return-to-available-state-and-the-countdown-display-must-be-cleared-the-timer-must-be-implemented-using-a-client-side-countdown-e-g-setinterval-useeffect-only-one-slot-may-be-locked-at-a-time-selecting-a-different-slot-resets-the-timer",
+      "title": "Implement slot locking logic on the 'Select Date & Time' page: when a user selects an available slot, that slot must be immediately marked as 'locked' in local component state and a 5-minute countdown timer must be displayed prominently near the slot or in a summary bar (e.g., 'Slot held for 04:32'). If the user does not complete payment (i.e., does not proceed to the next step) within 5 minutes, the slot lock must expire, the slot must return to 'available' state, and the countdown display must be cleared. The timer must be implemented using a client-side countdown (e.g., `setInterval` / `useEffect`). Only one slot may be locked at a time; selecting a different slot resets the timer.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-confirm-slot-button-at-the-bottom-of-the-select-date-time-page-styled-in-the-medical-blue-theme-the-button-must-be-disabled-until-both-a-date-and-a-time-slot-are-selected-and-the-slot-lock-timer-is-active-on-click-it-must-navigate-the-user-to-the-next-step-in-the-booking-flow-patient-details-payment-page-pass-the-selected-date-time-slot-doctorid-consultation-type-and-total-fee-as-route-query-parameters-to-the-next-screen",
+      "title": "Add a 'Confirm Slot' button at the bottom of the 'Select Date & Time' page, styled in the Medical Blue theme. The button must be disabled until both a date and a time slot are selected and the slot lock timer is active. On click, it must navigate the user to the next step in the booking flow (patient details / payment page). Pass the selected date, time slot, doctorId, consultation type, and total fee as route/query parameters to the next screen.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-patient-details-page-at-route-patient-details-that-receives-doctorid-consultationtype-totalfee-date-and-timeslot-as-route-query-parameters-passed-from-the-select-date-time-page-book-slot-doctorid-register-this-route-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-used-for-other-booking-flow-routes",
+      "title": "Create a 'Patient Details' page at route `/patient-details` that receives `doctorId`, `consultationType`, `totalFee`, `date`, and `timeSlot` as route/query parameters passed from the 'Select Date & Time' page (`/book-slot/:doctorId`). Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern used for other booking-flow routes.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-at-the-top-of-the-patient-details-page-render-a-patient-type-selector-with-three-mutually-exclusive-options-self-family-member-and-corporate-employee-only-one-option-may-be-selected-at-a-time-the-selected-option-must-be-visually-highlighted-using-the-medical-blue-theme",
+      "title": "At the top of the Patient Details page, render a patient type selector with three mutually exclusive options: 'Self', 'Family Member', and 'Corporate Employee'. Only one option may be selected at a time. The selected option must be visually highlighted using the Medical Blue theme.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-below-the-patient-type-selector-on-the-patient-details-page-render-a-form-that-collects-the-following-fields-full-name-text-input-age-numeric-input-gender-radio-group-or-select-male-female-other-phone-numeric-input-10-digits-symptoms-multi-line-text-area-all-fields-must-be-required-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "Below the patient type selector on the Patient Details page, render a form that collects the following fields: Full Name (text input), Age (numeric input), Gender (radio group or select: Male / Female / Other), Phone (numeric input, 10 digits), Symptoms (multi-line text area). All fields must be required. Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-the-selected-consultation-type-received-as-a-query-parameter-is-home-visit-conditionally-show-an-address-field-multi-line-text-area-in-the-patient-details-form-between-the-phone-and-symptoms-fields-the-address-field-must-be-required-when-visible-when-the-consultation-type-is-not-home-visit-the-address-field-must-be-hidden-and-not-required",
+      "title": "When the selected consultation type (received as a query parameter) is 'Home Visit', conditionally show an Address field (multi-line text area) in the Patient Details form between the Phone and Symptoms fields. The Address field must be required when visible. When the consultation type is not 'Home Visit', the Address field must be hidden and not required.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-below-the-symptoms-field-on-the-patient-details-page-add-an-upload-reports-file-input-that-allows-the-user-to-upload-one-or-more-files-accept-common-document-and-image-formats-pdf-jpg-png-display-the-names-of-selected-files-below-the-input-the-upload-field-is-optional-styling-must-follow-the-medical-blue-theme",
+      "title": "Below the Symptoms field on the Patient Details page, add an 'Upload Reports' file input that allows the user to upload one or more files (accept common document and image formats: PDF, JPG, PNG). Display the names of selected files below the input. The upload field is optional. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-prominent-continue-button-at-the-bottom-of-the-patient-details-page-styled-in-the-medical-blue-theme-the-button-must-be-disabled-until-a-a-patient-type-is-selected-and-b-all-required-form-fields-name-age-gender-phone-symptoms-and-address-if-home-visit-are-filled-on-click-navigate-the-user-to-the-next-step-in-the-booking-flow-payment-page-or-booking-confirmation-page-passing-all-collected-patient-details-along-with-doctorid-consultationtype-totalfee-date-and-timeslot-as-route-query-parameters",
+      "title": "Add a prominent 'Continue' button at the bottom of the Patient Details page, styled in the Medical Blue theme. The button must be disabled until: (a) a patient type is selected, and (b) all required form fields (Name, Age, Gender, Phone, Symptoms, and Address if Home Visit) are filled. On click, navigate the user to the next step in the booking flow (payment page or booking confirmation page), passing all collected patient details along with doctorId, consultationType, totalFee, date, and timeSlot as route/query parameters.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-payment-page-at-route-payment-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-the-page-must-receive-doctorid-consultationtype-totalfee-date-timeslot-patientname-patientage-patientgender-patientphone-patienttype-and-symptoms-as-route-query-parameters-passed-from-the-patient-details-page-patient-details",
+      "title": "Create a 'Payment' page at route `/payment` in `frontend/src/App.tsx` following the existing TanStack Router pattern. The page must receive `doctorId`, `consultationType`, `totalFee`, `date`, `timeSlot`, `patientName`, `patientAge`, `patientGender`, `patientPhone`, `patientType`, and `symptoms` as route/query parameters passed from the Patient Details page (`/patient-details`).",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-payment-page-render-a-fee-breakdown-summary-section-at-the-top-that-displays-the-following-line-items-1-consultation-fee-the-base-doctor-consultation-fee-from-mock-data-keyed-by-doctorid-2-travel-fee-shown-only-when-consultationtype-is-home-visit-mock-value-200-3-gst-calculated-as-18-of-consultation-fee-travel-fee-before-discounts-4-discount-shown-as-a-negative-line-item-representing-the-total-discount-amount-applied-corporate-subscription-discounts-from-the-previous-step-passed-via-totalfee-parameter-5-final-total-the-grand-total-after-all-additions-and-deductions-all-monetary-values-must-be-displayed-in-indian-rupee-format-styling-must-follow-the-medical-blue-theme",
+      "title": "On the Payment page, render a fee breakdown summary section at the top that displays the following line items: (1) Consultation Fee — the base doctor consultation fee from mock data keyed by doctorId; (2) Travel Fee — shown only when consultationType is 'Home Visit' (mock value: ₹200); (3) GST — calculated as 18% of (Consultation Fee + Travel Fee, before discounts); (4) Discount — shown as a negative line item representing the total discount amount applied (corporate + subscription discounts from the previous step, passed via totalFee parameter); (5) Final Total — the grand total after all additions and deductions. All monetary values must be displayed in Indian Rupee format (₹). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-payment-page-below-the-fee-breakdown-section-render-a-select-payment-method-section-offering-five-mutually-exclusive-payment-method-options-1-upi-2-card-3-net-banking-4-wallet-5-pay-at-home-each-option-must-be-displayed-as-a-selectable-card-tile-with-its-icon-and-label-only-one-payment-method-may-be-selected-at-a-time-the-currently-selected-method-must-be-visually-highlighted-using-the-medical-blue-theme-pay-at-home-option-must-display-a-brief-note-such-as-pay-cash-to-the-doctor-at-the-time-of-visit-styling-must-follow-the-medical-blue-theme",
+      "title": "On the Payment page, below the fee breakdown section, render a 'Select Payment Method' section offering five mutually exclusive payment method options: (1) 💳 UPI, (2) 💳 Card, (3) 🏦 Net Banking, (4) 👛 Wallet, (5) 🏠 Pay at Home. Each option must be displayed as a selectable card/tile with its icon and label. Only one payment method may be selected at a time. The currently selected method must be visually highlighted using the Medical Blue theme. 'Pay at Home' option must display a brief note such as 'Pay cash to the doctor at the time of visit'. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-payment-page-add-a-prominent-pay-now-button-at-the-bottom-styled-in-the-medical-blue-theme-the-button-must-be-disabled-until-a-payment-method-is-selected-on-click-simulate-a-successful-payment-mock-no-real-payment-gateway-integration-generate-a-unique-alphanumeric-booking-id-e-g-jhc-xxxxxxxx-where-x-is-a-random-alphanumeric-character-generated-client-side-and-navigate-the-user-to-a-booking-confirmation-screen-at-route-booking-confirmation-passing-the-booking-id-doctorid-consultationtype-totalfee-date-timeslot-and-patientname-as-route-query-parameters",
+      "title": "On the Payment page, add a prominent 'Pay Now' button at the bottom styled in the Medical Blue theme. The button must be disabled until a payment method is selected. On click, simulate a successful payment (mock — no real payment gateway integration), generate a unique alphanumeric Booking ID (e.g., `JHC-XXXXXXXX` where X is a random alphanumeric character, generated client-side), and navigate the user to a Booking Confirmation screen at route `/booking-confirmation`, passing the Booking ID, doctorId, consultationType, totalFee, date, timeSlot, and patientName as route/query parameters.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-booking-confirmation-page-at-route-booking-confirmation-in-frontend-src-app-tsx-the-page-must-receive-and-display-the-booking-id-doctor-name-looked-up-from-mock-data-via-doctorid-consultation-type-final-total-fee-appointment-date-time-slot-and-patient-name-the-page-must-display-a-prominent-success-indicator-e-g-a-green-checkmark-icon-or-medical-blue-success-banner-with-the-message-booking-confirmed-and-show-all-booking-details-in-a-summary-card-include-a-go-to-home-button-and-a-view-my-bookings-button-at-the-bottom-both-styled-in-the-medical-blue-theme-the-booking-id-must-be-displayed-prominently-and-clearly-labelled",
+      "title": "Create a 'Booking Confirmation' page at route `/booking-confirmation` in `frontend/src/App.tsx`. The page must receive and display the Booking ID, doctor name (looked up from mock data via doctorId), consultation type, final total fee, appointment date, time slot, and patient name. The page must display a prominent success indicator (e.g., a green checkmark icon or Medical Blue success banner) with the message 'Booking Confirmed!' and show all booking details in a summary card. Include a 'Go to Home' button and a 'View My Bookings' button at the bottom, both styled in the Medical Blue theme. The Booking ID must be displayed prominently and clearly labelled.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-continue-button-on-the-patient-details-page-frontend-src-pages-patientdetailspage-tsx-to-navigate-to-the-new-payment-page-at-route-payment-instead-of-any-previous-destination-passing-all-collected-patient-details-along-with-doctorid-consultationtype-totalfee-date-and-timeslot-as-route-query-parameters",
+      "title": "Update the 'Continue' button on the Patient Details page (`frontend/src/pages/PatientDetailsPage.tsx`) to navigate to the new Payment page at route `/payment` (instead of any previous destination), passing all collected patient details along with `doctorId`, `consultationType`, `totalFee`, `date`, and `timeSlot` as route/query parameters.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-frontend-component-frontend-src-components-appointmentreminders-tsx-that-implements-a-client-side-reminder-system-for-booked-appointments-the-component-must-accept-the-appointment-date-time-doctorid-and-consultationtype-as-props-it-must-schedule-and-display-three-in-app-reminder-notifications-at-exactly-24-hours-3-hours-and-1-hour-before-the-appointment-time-each-reminder-must-display-a-banner-toast-notification-with-a-clear-message-e-g-your-appointment-is-in-24-hours-your-appointment-is-in-3-hours-your-appointment-is-in-1-hour-and-the-doctor-name-and-scheduled-time-reminders-must-be-triggered-using-settimeout-useeffect-based-on-the-time-remaining-until-the-appointment-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "Create a new frontend component `frontend/src/components/AppointmentReminders.tsx` that implements a client-side reminder system for booked appointments. The component must accept the appointment date/time, doctorId, and consultationType as props. It must schedule and display three in-app reminder notifications at exactly 24 hours, 3 hours, and 1 hour before the appointment time. Each reminder must display a banner/toast notification with a clear message (e.g., 'Your appointment is in 24 hours', 'Your appointment is in 3 hours', 'Your appointment is in 1 hour') and the doctor name and scheduled time. Reminders must be triggered using `setTimeout` / `useEffect` based on the time remaining until the appointment. Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-appointmentreminders-component-and-on-the-booking-confirmation-page-frontend-src-pages-bookingconfirmationpage-tsx-add-a-join-video-call-button-that-is-hidden-and-disabled-until-exactly-15-minutes-before-the-appointment-time-when-the-current-time-is-within-15-minutes-of-the-appointment-start-time-the-button-must-become-visible-and-enabled-displaying-the-label-join-video-call-with-a-video-camera-icon-the-button-must-be-styled-prominently-in-the-medical-blue-theme-for-consultationtype-values-other-than-online-the-button-must-not-be-rendered-the-visibility-transition-must-be-driven-by-a-client-side-useeffect-setinterval-countdown",
+      "title": "On the `AppointmentReminders` component (and on the Booking Confirmation page `frontend/src/pages/BookingConfirmationPage.tsx`), add a 'Join Video Call' button that is hidden and disabled until exactly 15 minutes before the appointment time. When the current time is within 15 minutes of the appointment start time, the button must become visible and enabled, displaying the label 'Join Video Call' with a video camera icon. The button must be styled prominently in the Medical Blue theme. For consultationType values other than 'Online', the button must not be rendered. The visibility transition must be driven by a client-side `useEffect`/`setInterval` countdown.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-the-appointmentreminders-component-into-frontend-src-pages-bookingconfirmationpage-tsx-pass-the-appointment-date-timeslot-doctorid-and-consultationtype-already-available-as-url-search-params-on-that-page-as-props-to-the-component-the-reminders-section-must-appear-below-the-booking-summary-card-and-above-the-navigation-buttons-a-brief-section-header-such-as-appointment-reminders-must-label-this-section",
+      "title": "Integrate the `AppointmentReminders` component into `frontend/src/pages/BookingConfirmationPage.tsx`. Pass the appointment date, timeSlot, doctorId, and consultationType (already available as URL search params on that page) as props to the component. The reminders section must appear below the booking summary card and above the navigation buttons. A brief section header such as 'Appointment Reminders' must label this section.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-page-frontend-src-pages-onlineconsultationpage-tsx-at-route-online-consultation-that-serves-as-the-consultation-execution-screen-for-online-consultation-type-the-page-must-receive-doctorid-bookingid-date-timeslot-and-patientname-as-url-search-params-the-screen-must-display-a-header-with-the-doctor-s-name-and-specialty-looked-up-from-mock-data-via-doctorid-booking-id-and-appointment-time-register-this-route-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern",
+      "title": "Create a new page `frontend/src/pages/OnlineConsultationPage.tsx` at route `/online-consultation` that serves as the consultation execution screen for Online consultation type. The page must receive `doctorId`, `bookingId`, `date`, `timeSlot`, and `patientName` as URL search params. The screen must display a header with the doctor's name and specialty (looked up from mock data via doctorId), booking ID, and appointment time. Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-onlineconsultationpage-render-a-secure-video-section-as-the-primary-content-area-display-a-mock-video-call-interface-with-a-large-video-placeholder-area-showing-the-doctor-s-avatar-and-name-a-patient-self-view-thumbnail-bottom-right-corner-and-a-control-bar-at-the-bottom-with-the-following-toggle-buttons-mute-unmute-microphone-camera-on-off-end-call-red-navigates-back-to-booking-confirmation-or-home-the-video-area-must-show-a-waiting-for-doctor-to-join-status-message-before-the-call-is-active-and-connected-once-the-mock-call-starts-auto-transition-after-3-seconds-styling-must-follow-the-medical-blue-theme",
+      "title": "On the OnlineConsultationPage, render a Secure Video section as the primary content area. Display a mock video call interface with a large video placeholder area (showing the doctor's avatar and name), a patient self-view thumbnail (bottom-right corner), and a control bar at the bottom with the following toggle buttons: 🎤 Mute/Unmute microphone, 📷 Camera on/off, 📞 End Call (red, navigates back to Booking Confirmation or Home). The video area must show a 'Waiting for doctor to join…' status message before the call is active and 'Connected' once the mock call starts (auto-transition after 3 seconds). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-onlineconsultationpage-add-a-collapsible-chat-panel-slide-in-from-the-right-or-as-a-tab-below-the-video-area-the-chat-panel-must-display-a-message-thread-area-initially-empty-with-a-placeholder-no-messages-yet-a-text-input-field-at-the-bottom-and-a-send-button-clicking-send-appends-the-typed-message-to-the-thread-as-a-patient-message-right-aligned-medical-blue-background-in-local-component-state-mock-doctor-replies-left-aligned-grey-background-must-appear-automatically-2-seconds-after-each-patient-message-with-a-static-response-such-as-thank-you-i-have-noted-that-the-chat-toggle-button-must-be-accessible-from-the-video-control-bar-icon-styling-must-follow-the-medical-blue-theme",
+      "title": "On the OnlineConsultationPage, add a collapsible Chat panel (slide-in from the right or as a tab below the video area). The chat panel must display a message thread area (initially empty with a placeholder 'No messages yet'), a text input field at the bottom, and a Send button. Clicking Send appends the typed message to the thread as a patient message (right-aligned, Medical Blue background) in local component state. Mock doctor replies (left-aligned, grey background) must appear automatically 2 seconds after each patient message with a static response such as 'Thank you, I have noted that.' The chat toggle button must be accessible from the video control bar (💬 icon). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-onlineconsultationpage-add-a-file-upload-section-accessible-via-a-icon-button-in-the-video-control-bar-or-chat-panel-clicking-the-icon-opens-a-file-picker-accept-pdf-jpg-png-selected-files-are-listed-below-the-chat-input-with-their-filename-and-size-each-uploaded-file-displays-a-remove-button-files-are-stored-in-local-component-state-only-no-backend-upload-a-maximum-of-5-files-may-be-attached-at-once-exceeding-the-limit-shows-an-inline-error-message-styling-must-follow-the-medical-blue-theme",
+      "title": "On the OnlineConsultationPage, add a File Upload section accessible via a 📎 icon button in the video control bar or chat panel. Clicking the icon opens a file picker (accept PDF, JPG, PNG). Selected files are listed below the chat input with their filename and size. Each uploaded file displays a remove (×) button. Files are stored in local component state only (no backend upload). A maximum of 5 files may be attached at once; exceeding the limit shows an inline error message. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-onlineconsultationpage-add-an-e-prescription-section-accessible-via-a-tab-or-button-labelled-e-prescription-the-section-must-display-a-prescription-form-with-the-following-read-only-pre-filled-fields-patient-name-doctor-name-date-and-the-following-editable-fields-diagnosis-text-area-medicines-a-dynamic-list-where-each-entry-has-medicine-name-text-input-dosage-text-input-frequency-select-once-twice-thrice-daily-duration-text-input-and-a-remove-row-button-and-additional-notes-text-area-an-add-medicine-button-appends-a-new-empty-medicine-row-a-generate-prescription-button-at-the-bottom-renders-the-completed-prescription-as-a-styled-summary-card-mock-pdf-preview-and-shows-a-download-pdf-button-which-triggers-a-browser-print-dialog-styling-must-follow-the-medical-blue-theme",
+      "title": "On the OnlineConsultationPage, add an e-Prescription section accessible via a 📋 tab or button (labelled 'e-Prescription'). The section must display a prescription form with the following read-only pre-filled fields: Patient Name, Doctor Name, Date; and the following editable fields: Diagnosis (text area), Medicines (a dynamic list where each entry has: medicine name text input, dosage text input, frequency select — Once/Twice/Thrice daily, duration text input, and a remove row button), and Additional Notes (text area). An 'Add Medicine' button appends a new empty medicine row. A 'Generate Prescription' button at the bottom renders the completed prescription as a styled summary card (mock PDF preview) and shows a 'Download PDF' button (which triggers a browser print dialog). Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-page-frontend-src-pages-homevisittrackingpage-tsx-at-route-home-visit-tracking-that-serves-as-the-consultation-execution-screen-for-home-visit-consultation-type-the-page-must-receive-doctorid-bookingid-date-timeslot-and-patientname-as-url-search-params-the-screen-must-display-a-header-with-the-doctor-s-name-specialty-and-booking-id-register-this-route-in-frontend-src-app-tsx-following-the-existing-tanstack-router-pattern-from-the-booking-confirmation-page-frontend-src-pages-bookingconfirmationpage-tsx-when-consultationtype-is-home-visit-the-join-track-visit-button-or-equivalent-cta-must-navigate-to-home-visit-tracking-with-the-appropriate-query-params",
+      "title": "Create a new page `frontend/src/pages/HomeVisitTrackingPage.tsx` at route `/home-visit-tracking` that serves as the consultation execution screen for Home Visit consultation type. The page must receive `doctorId`, `bookingId`, `date`, `timeSlot`, and `patientName` as URL search params. The screen must display a header with the doctor's name, specialty, and booking ID. Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern. From the Booking Confirmation page (`frontend/src/pages/BookingConfirmationPage.tsx`), when `consultationType` is 'Home Visit', the 'Join / Track Visit' button (or equivalent CTA) must navigate to `/home-visit-tracking` with the appropriate query params.",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-homevisittrackingpage-render-a-live-tracking-section-as-the-primary-content-area-display-a-mock-map-style-tracking-ui-consisting-of-a-rectangular-placeholder-area-styled-with-a-subtle-grid-map-background-labelled-live-map-a-doctor-avatar-marker-icon-on-the-map-that-animates-css-transition-from-one-position-to-another-every-5-seconds-to-simulate-movement-a-patient-home-marker-icon-at-a-fixed-position-and-a-dashed-route-line-between-the-two-markers-below-the-map-display-a-status-banner-that-cycles-through-doctor-has-accepted-your-request-doctor-is-on-the-way-and-doctor-is-nearby-at-8-second-intervals-to-simulate-real-time-status-updates-styling-must-follow-the-medical-blue-theme",
+      "title": "On the HomeVisitTrackingPage, render a Live Tracking section as the primary content area. Display a mock map-style tracking UI consisting of: a rectangular placeholder area (styled with a subtle grid/map background) labelled 'Live Map', a doctor avatar marker icon on the map that animates (CSS transition) from one position to another every 5 seconds to simulate movement, a patient home marker icon at a fixed position, and a dashed route line between the two markers. Below the map, display a status banner that cycles through 'Doctor has accepted your request', 'Doctor is on the way', and 'Doctor is nearby' at 8-second intervals to simulate real-time status updates. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-homevisittrackingpage-display-an-eta-estimated-time-of-arrival-section-prominently-below-the-map-show-a-large-countdown-timer-that-starts-at-a-mock-value-of-18-minutes-and-counts-down-to-0-formatted-as-mm-ss-display-a-label-estimated-arrival-above-the-timer-and-a-sub-label-doctor-is-on-the-way-below-it-when-the-countdown-reaches-0-replace-the-timer-with-the-message-doctor-has-arrived-styled-as-a-success-banner-in-green-medical-blue-the-countdown-must-be-implemented-using-setinterval-useeffect-styling-must-follow-the-medical-blue-theme",
+      "title": "On the HomeVisitTrackingPage, display an ETA (Estimated Time of Arrival) section prominently below the map. Show a large countdown timer that starts at a mock value of 18 minutes and counts down to 0, formatted as 'MM:SS'. Display a label 'Estimated Arrival' above the timer and a sub-label 'Doctor is on the way' below it. When the countdown reaches 0, replace the timer with the message 'Doctor has arrived!' styled as a success banner in green/Medical Blue. The countdown must be implemented using `setInterval` / `useEffect`. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-homevisittrackingpage-add-a-contact-doctor-section-below-the-eta-section-it-must-display-two-action-buttons-1-call-doctor-displays-a-modal-popover-with-the-mock-doctor-phone-number-e-g-91-98765-xxxxx-and-a-close-button-2-message-doctor-opens-an-inline-chat-panel-identical-in-behaviour-to-the-chat-panel-described-in-req-47-local-state-only-mock-auto-reply-after-2-seconds-both-buttons-must-be-styled-prominently-in-the-medical-blue-theme-additionally-display-the-doctor-s-name-photo-avatar-and-a-verified-doctor-badge-in-this-section",
+      "title": "On the HomeVisitTrackingPage, add a 'Contact Doctor' section below the ETA section. It must display two action buttons: (1) 📞 Call Doctor — displays a modal/popover with the mock doctor phone number (e.g., '+91 98765 XXXXX') and a 'Close' button; (2) 💬 Message Doctor — opens an inline chat panel identical in behaviour to the chat panel described in REQ-47 (local state only, mock auto-reply after 2 seconds). Both buttons must be styled prominently in the Medical Blue theme. Additionally, display the doctor's name, photo/avatar, and a 'Verified Doctor' badge in this section.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-pages-bookingconfirmationpage-tsx-to-add-consultation-execution-entry-point-buttons-below-the-appointmentreminders-section-and-above-the-navigation-buttons-for-consultationtype-online-display-a-start-consultation-button-visible-and-enabled-only-when-current-time-is-within-15-minutes-of-the-appointment-using-the-same-setinterval-useeffect-pattern-already-used-for-the-join-video-call-button-that-navigates-to-online-consultation-with-doctorid-bookingid-date-timeslot-and-patientname-as-query-params-for-consultationtype-home-visit-display-a-track-doctor-button-always-visible-once-booking-is-confirmed-that-navigates-to-home-visit-tracking-with-the-same-query-params-both-buttons-must-be-styled-in-the-medical-blue-theme",
+      "title": "Update `frontend/src/pages/BookingConfirmationPage.tsx` to add consultation execution entry-point buttons below the AppointmentReminders section and above the navigation buttons. For `consultationType === 'Online'`, display a 'Start Consultation' button (visible and enabled only when current time is within 15 minutes of the appointment, using the same `setInterval`/`useEffect` pattern already used for the 'Join Video Call' button) that navigates to `/online-consultation` with doctorId, bookingId, date, timeSlot, and patientName as query params. For `consultationType === 'Home Visit'`, display a 'Track Doctor' button (always visible once booking is confirmed) that navigates to `/home-visit-tracking` with the same query params. Both buttons must be styled in the Medical Blue theme.",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -285,6 +525,36 @@
     {
       "id": "AR-13",
       "summary": "Build 'Choose Consultation Type' screen: user selects Online, Clinic Visit, or Home Visit. System automatically adds travel fee for Home Visit, applies corporate discount, and applies subscription discount.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Build 'Select Date & Time' slot selection screen: calendar view, available slots in 30-min intervals, slot lock for 5 minutes with countdown, auto-release if payment not completed.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Build 'Patient Details' screen in the booking flow: user selects patient type (Self / Family Member / Corporate Employee) and collects Name, Age, Gender, Phone, Address (if Home Visit), Symptoms, and Upload Reports.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Build Payment page in booking flow: show fee breakdown (Consultation Fee, Travel Fee, GST, Discount, Final Total), offer payment methods (UPI, Card, Net Banking, Wallet, Pay at Home), and generate a Booking ID upon successful payment.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Build Reminder System for appointments: send reminders at 24 hours, 3 hours, and 1 hour before appointment; enable 'Join Video Call' button 15 minutes prior to the appointment.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Build consultation execution features: Online consultation includes Secure Video, Chat, File Upload, and e-Prescription; Home Visit consultation includes Live Tracking, ETA, and Contact Doctor.",
       "reqIds": [],
       "status": "pending"
     }

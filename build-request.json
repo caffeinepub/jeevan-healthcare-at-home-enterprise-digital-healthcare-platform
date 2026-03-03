@@ -1,110 +1,227 @@
 {
   "kind": "build_request",
-  "title": "Choose Consultation Type Screen with Fee & Discount Logic",
+  "title": "Build Consultation Execution Features: Online (Secure Video, Chat, File Upload, e-Prescription) & Home Visit (Live Tracking, ETA, Contact Doctor)",
   "projectName": "Jeevan HealthCare",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-21",
-      "text": "Create a 'Choose Consultation Type' screen (route: `/consultation-type/:doctorId`) that is navigated to when the user clicks 'Book Appointment' on the Doctor Profile screen. The screen must display three selectable consultation type cards: 💻 Online, 🏥 Clinic Visit, and 🏠 Home Visit. Only one type may be selected at a time. Each card must display the consultation type label, its icon, and a brief description (e.g., 'Video call with doctor', 'Visit doctor at clinic', 'Doctor visits your home'). Styling must follow the existing Medical Blue theme.",
+      "id": "REQ-45",
+      "text": "Create a new page `frontend/src/pages/OnlineConsultationPage.tsx` at route `/online-consultation` that serves as the consultation execution screen for Online consultation type. The page must receive `doctorId`, `bookingId`, `date`, `timeSlot`, and `patientName` as URL search params. The screen must display a header with the doctor's name and specialty (looked up from mock data via doctorId), booking ID, and appointment time. Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Choose Consultation Type",
-          "User selects:",
-          "💻 Online",
-          "🏥 Clinic",
-          "🏠 Home Visit"
+          "Online: Secure Video Chat File Upload e-Prescription"
         ]
       },
       "acceptanceCriteria": [
-        "The screen is accessible via the route `/consultation-type/:doctorId`.",
-        "Three consultation type cards are displayed: Online, Clinic Visit, and Home Visit, each with its emoji icon and a short description.",
-        "Selecting a card visually highlights it (active state) and deselects the previously selected card.",
-        "Only one consultation type can be active at a time.",
-        "The screen follows the Medical Blue theme consistently."
+        "Route `/online-consultation` is registered in App.tsx and renders OnlineConsultationPage",
+        "Page reads doctorId, bookingId, date, timeSlot, and patientName from URL search params",
+        "Doctor name and specialty are displayed in the header using mock data lookup",
+        "Booking ID and appointment time are prominently displayed"
       ]
     },
     {
-      "id": "REQ-22",
-      "text": "On the 'Choose Consultation Type' screen, implement automatic fee calculation logic: (1) When 'Home Visit' is selected, add a travel fee (mock value: ₹200) to the base consultation fee and display it as a line item labelled 'Travel Fee'. (2) When any type is selected, check for and apply a corporate discount (mock: 10% off) if the user has a corporate account, displaying the discount as a line item labelled 'Corporate Discount'. (3) Check for and apply a subscription discount (mock: 15% off) if the user has an active subscription, displaying it as a line item labelled 'Subscription Discount'. Display a fee breakdown summary below the type cards showing: Base Fee, Travel Fee (Home Visit only), Corporate Discount (if applicable), Subscription Discount (if applicable), and Total Payable. Discounts should be applied sequentially on the discounted price. Styling must follow the Medical Blue theme.",
+      "id": "REQ-46",
+      "text": "On the OnlineConsultationPage, render a Secure Video section as the primary content area. Display a mock video call interface with a large video placeholder area (showing the doctor's avatar and name), a patient self-view thumbnail (bottom-right corner), and a control bar at the bottom with the following toggle buttons: 🎤 Mute/Unmute microphone, 📷 Camera on/off, 📞 End Call (red, navigates back to Booking Confirmation or Home). The video area must show a 'Waiting for doctor to join…' status message before the call is active and 'Connected' once the mock call starts (auto-transition after 3 seconds). Styling must follow the Medical Blue theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "System automatically:",
-          "Adds travel fee (Home Visit)",
-          "Applies corporate discount",
-          "Applies subscription discount"
+          "Secure Video"
         ]
       },
       "acceptanceCriteria": [
-        "Selecting 'Home Visit' adds a ₹200 travel fee line item to the fee breakdown.",
-        "Selecting 'Online' or 'Clinic Visit' does not show a travel fee line item.",
-        "A corporate discount line item (10% off) is shown and applied when the mock corporate flag is true.",
-        "A subscription discount line item (15% off) is shown and applied when the mock subscription flag is true.",
-        "The fee breakdown section shows: Base Fee, Travel Fee (conditional), Corporate Discount (conditional), Subscription Discount (conditional), and Total Payable.",
-        "Total Payable updates in real time when the consultation type is changed.",
-        "Fee breakdown is clearly readable and styled with the Medical Blue theme."
+        "Large video placeholder area displays doctor avatar and name",
+        "Patient self-view thumbnail is shown in the bottom-right corner",
+        "Control bar has Mute, Camera, and End Call buttons",
+        "End Call button is red and navigates away from the consultation screen",
+        "Status message shows 'Waiting for doctor to join…' initially, transitions to 'Connected' after 3 seconds",
+        "Styling follows the Medical Blue theme"
       ]
     },
     {
-      "id": "REQ-23",
-      "text": "Add a prominent 'Continue' button at the bottom of the 'Choose Consultation Type' screen, styled in the Medical Blue theme. The button must be disabled until a consultation type is selected. On click, it should navigate the user to the next step in the booking flow (slot selection page at `/book-slot/:doctorId` or equivalent). Pass the selected consultation type and calculated total fee as route/query parameters to the next screen.",
+      "id": "REQ-47",
+      "text": "On the OnlineConsultationPage, add a collapsible Chat panel (slide-in from the right or as a tab below the video area). The chat panel must display a message thread area (initially empty with a placeholder 'No messages yet'), a text input field at the bottom, and a Send button. Clicking Send appends the typed message to the thread as a patient message (right-aligned, Medical Blue background) in local component state. Mock doctor replies (left-aligned, grey background) must appear automatically 2 seconds after each patient message with a static response such as 'Thank you, I have noted that.' The chat toggle button must be accessible from the video control bar (💬 icon). Styling must follow the Medical Blue theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Choose Consultation Type",
-          "💻 Online",
-          "🏥 Clinic",
-          "🏠 Home Visit"
+          "Chat"
         ]
       },
       "acceptanceCriteria": [
-        "A 'Continue' button is displayed at the bottom of the screen.",
-        "The button is visually disabled when no consultation type is selected.",
-        "The button becomes active once a consultation type is selected.",
-        "Clicking 'Continue' navigates the user to the slot selection step, passing the selected consultation type and total fee as parameters.",
-        "The button is styled in the Medical Blue theme."
+        "Chat panel can be toggled open/closed from the video control bar",
+        "Message thread shows patient messages right-aligned in Medical Blue and doctor replies left-aligned in grey",
+        "Mock doctor reply appears 2 seconds after each patient message",
+        "Send button appends the typed message to the thread",
+        "Input field is cleared after sending",
+        "Placeholder text shown when no messages exist"
       ]
     },
     {
-      "id": "REQ-24",
-      "text": "Update the 'Book Appointment' button on the Doctor Profile screen (`frontend/src/pages/PublicDoctorProfilePage.tsx`) to navigate to the new 'Choose Consultation Type' screen (`/consultation-type/:doctorId`) instead of any previous destination, passing the doctorId as a route parameter.",
+      "id": "REQ-48",
+      "text": "On the OnlineConsultationPage, add a File Upload section accessible via a 📎 icon button in the video control bar or chat panel. Clicking the icon opens a file picker (accept PDF, JPG, PNG). Selected files are listed below the chat input with their filename and size. Each uploaded file displays a remove (×) button. Files are stored in local component state only (no backend upload). A maximum of 5 files may be attached at once; exceeding the limit shows an inline error message. Styling must follow the Medical Blue theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Choose Consultation Type"
+          "File Upload"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking 'Book Appointment' on any Doctor Profile screen navigates to `/consultation-type/:doctorId` with the correct doctorId.",
-        "The navigation does not produce any console errors or missing-route warnings.",
-        "The route `/consultation-type/:doctorId` is registered in the root router configuration (`frontend/src/App.tsx`)."
+        "File picker accepts PDF, JPG, PNG formats",
+        "Selected file names and sizes are listed in the UI",
+        "Each file has a remove button that deselects it",
+        "Maximum of 5 files enforced with an inline error message when exceeded",
+        "Files are managed in local component state only"
+      ]
+    },
+    {
+      "id": "REQ-49",
+      "text": "On the OnlineConsultationPage, add an e-Prescription section accessible via a 📋 tab or button (labelled 'e-Prescription'). The section must display a prescription form with the following read-only pre-filled fields: Patient Name, Doctor Name, Date; and the following editable fields: Diagnosis (text area), Medicines (a dynamic list where each entry has: medicine name text input, dosage text input, frequency select — Once/Twice/Thrice daily, duration text input, and a remove row button), and Additional Notes (text area). An 'Add Medicine' button appends a new empty medicine row. A 'Generate Prescription' button at the bottom renders the completed prescription as a styled summary card (mock PDF preview) and shows a 'Download PDF' button (which triggers a browser print dialog). Styling must follow the Medical Blue theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "e-Prescription"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Patient name, doctor name, and date are pre-filled and read-only",
+        "Diagnosis text area, dynamic medicines list, and additional notes are editable",
+        "Add Medicine button appends a new row with medicine name, dosage, frequency, duration, and remove button",
+        "Generate Prescription button renders a styled prescription summary card",
+        "Download PDF button triggers the browser print dialog",
+        "Styling follows the Medical Blue theme"
+      ]
+    },
+    {
+      "id": "REQ-50",
+      "text": "Create a new page `frontend/src/pages/HomeVisitTrackingPage.tsx` at route `/home-visit-tracking` that serves as the consultation execution screen for Home Visit consultation type. The page must receive `doctorId`, `bookingId`, `date`, `timeSlot`, and `patientName` as URL search params. The screen must display a header with the doctor's name, specialty, and booking ID. Register this route in `frontend/src/App.tsx` following the existing TanStack Router pattern. From the Booking Confirmation page (`frontend/src/pages/BookingConfirmationPage.tsx`), when `consultationType` is 'Home Visit', the 'Join / Track Visit' button (or equivalent CTA) must navigate to `/home-visit-tracking` with the appropriate query params.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Home Visit: Live Tracking ETA Contact Doctor"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Route `/home-visit-tracking` is registered in App.tsx and renders HomeVisitTrackingPage",
+        "Page reads doctorId, bookingId, date, timeSlot, and patientName from URL search params",
+        "Doctor name, specialty, and booking ID are displayed in the header",
+        "Booking Confirmation page navigates to this route when consultationType is 'Home Visit'"
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "text": "On the HomeVisitTrackingPage, render a Live Tracking section as the primary content area. Display a mock map-style tracking UI consisting of: a rectangular placeholder area (styled with a subtle grid/map background) labelled 'Live Map', a doctor avatar marker icon on the map that animates (CSS transition) from one position to another every 5 seconds to simulate movement, a patient home marker icon at a fixed position, and a dashed route line between the two markers. Below the map, display a status banner that cycles through 'Doctor has accepted your request', 'Doctor is on the way', and 'Doctor is nearby' at 8-second intervals to simulate real-time status updates. Styling must follow the Medical Blue theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Live Tracking"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Map placeholder area is rendered with a grid/map background",
+        "Doctor marker animates position every 5 seconds using CSS transitions",
+        "Patient home marker is fixed in place",
+        "Dashed route line connects the two markers",
+        "Status banner cycles through three status messages at 8-second intervals",
+        "Styling follows the Medical Blue theme"
+      ]
+    },
+    {
+      "id": "REQ-52",
+      "text": "On the HomeVisitTrackingPage, display an ETA (Estimated Time of Arrival) section prominently below the map. Show a large countdown timer that starts at a mock value of 18 minutes and counts down to 0, formatted as 'MM:SS'. Display a label 'Estimated Arrival' above the timer and a sub-label 'Doctor is on the way' below it. When the countdown reaches 0, replace the timer with the message 'Doctor has arrived!' styled as a success banner in green/Medical Blue. The countdown must be implemented using `setInterval` / `useEffect`. Styling must follow the Medical Blue theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ETA"
+        ]
+      },
+      "acceptanceCriteria": [
+        "ETA countdown starts at 18:00 and counts down to 0 using setInterval/useEffect",
+        "Timer is formatted as MM:SS",
+        "Label 'Estimated Arrival' appears above and 'Doctor is on the way' below the timer",
+        "When countdown reaches 0, timer is replaced with a 'Doctor has arrived!' success banner",
+        "Styling follows the Medical Blue theme"
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "text": "On the HomeVisitTrackingPage, add a 'Contact Doctor' section below the ETA section. It must display two action buttons: (1) 📞 Call Doctor — displays a modal/popover with the mock doctor phone number (e.g., '+91 98765 XXXXX') and a 'Close' button; (2) 💬 Message Doctor — opens an inline chat panel identical in behaviour to the chat panel described in REQ-47 (local state only, mock auto-reply after 2 seconds). Both buttons must be styled prominently in the Medical Blue theme. Additionally, display the doctor's name, photo/avatar, and a 'Verified Doctor' badge in this section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Contact Doctor"
+        ]
+      },
+      "acceptanceCriteria": [
+        "'Call Doctor' button opens a modal/popover showing a mock phone number and a Close button",
+        "'Message Doctor' button opens an inline chat panel with local state and mock auto-reply",
+        "Doctor name, avatar/photo placeholder, and 'Verified Doctor' badge are displayed",
+        "Both buttons are styled in the Medical Blue theme"
+      ]
+    },
+    {
+      "id": "REQ-54",
+      "text": "Update `frontend/src/pages/BookingConfirmationPage.tsx` to add consultation execution entry-point buttons below the AppointmentReminders section and above the navigation buttons. For `consultationType === 'Online'`, display a 'Start Consultation' button (visible and enabled only when current time is within 15 minutes of the appointment, using the same `setInterval`/`useEffect` pattern already used for the 'Join Video Call' button) that navigates to `/online-consultation` with doctorId, bookingId, date, timeSlot, and patientName as query params. For `consultationType === 'Home Visit'`, display a 'Track Doctor' button (always visible once booking is confirmed) that navigates to `/home-visit-tracking` with the same query params. Both buttons must be styled in the Medical Blue theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Online: Secure Video",
+          "Home Visit: Live Tracking"
+        ]
+      },
+      "acceptanceCriteria": [
+        "'Start Consultation' button appears for Online type and is enabled only within 15 minutes of appointment time",
+        "'Track Doctor' button appears for Home Visit type and is always visible after booking",
+        "Both buttons navigate to their respective pages with the correct query params",
+        "Both buttons are styled in the Medical Blue theme",
+        "Buttons appear below the AppointmentReminders section and above the 'Go to Home'/'View My Bookings' buttons"
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files listed under frontend.immutablePaths.",
-    "All fee calculation logic (travel fee, corporate discount, subscription discount) must use mock/static values on the frontend only — no backend changes required for this feature.",
-    "Styling must remain consistent with the existing Medical Blue theme throughout."
+    "No real video SDK, payment gateway, or map API integration — all consultation and tracking features must use mock/simulated data and client-side state only",
+    "All new pages must be registered in frontend/src/App.tsx following the existing TanStack Router pattern",
+    "Do not modify any files listed under frontend.immutablePaths",
+    "Reuse the existing mock doctor dataset from frontend/src/lib/mockDoctors.ts as the single source of truth for doctor data",
+    "Styling must consistently follow the existing Medical Blue theme defined in frontend/index.css and frontend/tailwind.config.js"
   ],
   "nonGoals": [
-    "Real payment processing or Razorpay integration for this screen.",
-    "Real corporate account or subscription status lookup from the backend.",
-    "Building the full slot selection or patient details steps (only navigation to that step is required).",
-    "Geolocation or distance-based travel fee calculation."
+    "Real WebRTC or video SDK integration (e.g., Twilio, Agora, Daily.co)",
+    "Real GPS or map API integration (e.g., Google Maps, Mapbox)",
+    "Backend persistence of consultation sessions, chat messages, or prescriptions",
+    "Real file upload to backend or cloud storage",
+    "SMS, email, or push notification delivery",
+    "Razorpay or any real payment gateway integration",
+    "Post-consultation features (ratings, follow-up, lab test orders from e-Prescription)"
   ],
   "imageRequirements": {
     "required": [],

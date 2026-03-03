@@ -18,6 +18,12 @@ import DoctorConsultationPage from './pages/DoctorConsultationPage';
 import DoctorListingPage from './pages/DoctorListingPage';
 import PublicDoctorProfilePage from './pages/PublicDoctorProfilePage';
 import ConsultationTypePage from './pages/ConsultationTypePage';
+import BookSlotPage from './pages/BookSlotPage';
+import PatientDetailsPage from './pages/PatientDetailsPage';
+import PaymentPage from './pages/PaymentPage';
+import BookingConfirmationPage from './pages/BookingConfirmationPage';
+import OnlineConsultationPage from './pages/OnlineConsultationPage';
+import HomeVisitTrackingPage from './pages/HomeVisitTrackingPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminTestsPage from './pages/admin/AdminTestsPage';
@@ -50,7 +56,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Root route uses Layout directly so all child paths are top-level (e.g. /services/$slug, /orders/$orderId)
+// Root route uses Layout directly so all child paths are top-level
 const rootRoute = createRootRoute({
   component: Layout,
 });
@@ -144,6 +150,42 @@ const consultationTypeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/consultation-type/$doctorId',
   component: ConsultationTypePage,
+});
+
+const bookSlotRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/book-slot/$doctorId',
+  component: BookSlotPage,
+});
+
+const patientDetailsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/patient-details',
+  component: PatientDetailsPage,
+});
+
+const paymentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/payment',
+  component: PaymentPage,
+});
+
+const bookingConfirmationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/booking-confirmation',
+  component: BookingConfirmationPage,
+});
+
+const onlineConsultationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/online-consultation',
+  component: OnlineConsultationPage,
+});
+
+const homeVisitTrackingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/home-visit-tracking',
+  component: HomeVisitTrackingPage,
 });
 
 // Admin routes
@@ -298,6 +340,12 @@ const routeTree = rootRoute.addChildren([
   doctorListingRoute,
   publicDoctorProfileRoute,
   consultationTypeRoute,
+  bookSlotRoute,
+  patientDetailsRoute,
+  paymentRoute,
+  bookingConfirmationRoute,
+  onlineConsultationRoute,
+  homeVisitTrackingRoute,
   adminRootRoute.addChildren([
     adminDashboardRoute,
     adminTestsRoute,
