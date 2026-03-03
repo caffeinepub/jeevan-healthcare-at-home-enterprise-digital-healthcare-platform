@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 21,
+  "projectStateVersion": 23,
   "summary": "Jeevan HealthCare at Home: full enterprise-grade AI-powered home healthcare super app with React Native frontend, Node.js/Express/MongoDB backend, role-based dashboards (Patient, Doctor, Nurse, Corporate HR, Admin, Super Admin), 7 core modules (Home Healthcare, Preventive/Corporate, Digital Health, Mother & Child, Wellness, Specialist Care, B2B), AI symptom checker embedded in Health tab, Razorpay payments, Firebase notifications, WhatsApp API, seeded sample data, web admin panel, and an enterprise-grade Doctor Consultation / Specialist Booking system with 16 specialty categories, end-to-end booking flow (slot selection, patient details, payment, confirmation, reminders, video consultation, post-consultation, reviews), and admin panel for doctor/slot/revenue management.",
   "architectural_notes": [
     "Symptom Checker is an embedded component inside the Health Tab (Digital Health Module), NOT a standalone route. No /symptom-checker entry in root layout.",
@@ -175,6 +175,38 @@
         "REQ-20"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-choose-consultation-type-screen-route-consultation-type-doctorid-that-is-navigated-to-when-the-user-clicks-book-appointment-on-the-doctor-profile-screen-the-screen-must-display-three-selectable-consultation-type-cards-online-clinic-visit-and-home-visit-only-one-type-may-be-selected-at-a-time-each-card-must-display-the-consultation-type-label-its-icon-and-a-brief-description-e-g-video-call-with-doctor-visit-doctor-at-clinic-doctor-visits-your-home-styling-must-follow-the-existing-medical-blue-theme",
+      "title": "Create a 'Choose Consultation Type' screen (route: `/consultation-type/:doctorId`) that is navigated to when the user clicks 'Book Appointment' on the Doctor Profile screen. The screen must display three selectable consultation type cards: 💻 Online, 🏥 Clinic Visit, and 🏠 Home Visit. Only one type may be selected at a time. Each card must display the consultation type label, its icon, and a brief description (e.g., 'Video call with doctor', 'Visit doctor at clinic', 'Doctor visits your home'). Styling must follow the existing Medical Blue theme.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-choose-consultation-type-screen-implement-automatic-fee-calculation-logic-1-when-home-visit-is-selected-add-a-travel-fee-mock-value-200-to-the-base-consultation-fee-and-display-it-as-a-line-item-labelled-travel-fee-2-when-any-type-is-selected-check-for-and-apply-a-corporate-discount-mock-10-off-if-the-user-has-a-corporate-account-displaying-the-discount-as-a-line-item-labelled-corporate-discount-3-check-for-and-apply-a-subscription-discount-mock-15-off-if-the-user-has-an-active-subscription-displaying-it-as-a-line-item-labelled-subscription-discount-display-a-fee-breakdown-summary-below-the-type-cards-showing-base-fee-travel-fee-home-visit-only-corporate-discount-if-applicable-subscription-discount-if-applicable-and-total-payable-discounts-should-be-applied-sequentially-on-the-discounted-price-styling-must-follow-the-medical-blue-theme",
+      "title": "On the 'Choose Consultation Type' screen, implement automatic fee calculation logic: (1) When 'Home Visit' is selected, add a travel fee (mock value: ₹200) to the base consultation fee and display it as a line item labelled 'Travel Fee'. (2) When any type is selected, check for and apply a corporate discount (mock: 10% off) if the user has a corporate account, displaying the discount as a line item labelled 'Corporate Discount'. (3) Check for and apply a subscription discount (mock: 15% off) if the user has an active subscription, displaying it as a line item labelled 'Subscription Discount'. Display a fee breakdown summary below the type cards showing: Base Fee, Travel Fee (Home Visit only), Corporate Discount (if applicable), Subscription Discount (if applicable), and Total Payable. Discounts should be applied sequentially on the discounted price. Styling must follow the Medical Blue theme.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-prominent-continue-button-at-the-bottom-of-the-choose-consultation-type-screen-styled-in-the-medical-blue-theme-the-button-must-be-disabled-until-a-consultation-type-is-selected-on-click-it-should-navigate-the-user-to-the-next-step-in-the-booking-flow-slot-selection-page-at-book-slot-doctorid-or-equivalent-pass-the-selected-consultation-type-and-calculated-total-fee-as-route-query-parameters-to-the-next-screen",
+      "title": "Add a prominent 'Continue' button at the bottom of the 'Choose Consultation Type' screen, styled in the Medical Blue theme. The button must be disabled until a consultation type is selected. On click, it should navigate the user to the next step in the booking flow (slot selection page at `/book-slot/:doctorId` or equivalent). Pass the selected consultation type and calculated total fee as route/query parameters to the next screen.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-book-appointment-button-on-the-doctor-profile-screen-frontend-src-pages-publicdoctorprofilepage-tsx-to-navigate-to-the-new-choose-consultation-type-screen-consultation-type-doctorid-instead-of-any-previous-destination-passing-the-doctorid-as-a-route-parameter",
+      "title": "Update the 'Book Appointment' button on the Doctor Profile screen (`frontend/src/pages/PublicDoctorProfilePage.tsx`) to navigate to the new 'Choose Consultation Type' screen (`/consultation-type/:doctorId`) instead of any previous destination, passing the doctorId as a route parameter.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -247,6 +279,12 @@
     {
       "id": "AR-12",
       "summary": "Replace existing phone number with +91 9700104108 in the app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Build 'Choose Consultation Type' screen: user selects Online, Clinic Visit, or Home Visit. System automatically adds travel fee for Home Visit, applies corporate discount, and applies subscription discount.",
       "reqIds": [],
       "status": "pending"
     }

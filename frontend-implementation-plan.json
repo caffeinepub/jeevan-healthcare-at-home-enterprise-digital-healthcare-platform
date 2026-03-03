@@ -1,47 +1,82 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Doctor Listing Screen — Full Card Fields + Sorting Controls",
+  "title": "Choose Consultation Type Screen with Fee & Discount Logic",
   "requirements": [
     {
-      "id": "REQ-19",
-      "summary": "Update DoctorCard component to display all required fields including photo, full name, qualification, specialty, experience, star rating, starting fee, consultation modes as badge icons, and a prominent Book Now button styled in Medical Blue theme",
+      "id": "REQ-21",
+      "summary": "Create a 'Choose Consultation Type' screen that displays three selectable consultation type cards (Online, Clinic Visit, Home Visit) with single-selection behavior, styled in the Medical Blue theme",
       "acceptanceCriteria": [
-        "Each doctor card on DoctorListingPage renders a photo or avatar placeholder when no image is available.",
-        "Each card shows the doctor's full name, qualification (e.g., MBBS, MD), specialty, and years of experience.",
-        "Each card shows a star rating with both a numeric value and star icons.",
-        "Each card shows the starting consultation fee.",
-        "Each card shows available consultation modes (Online / Clinic / Home Visit) as small badge icons.",
-        "Each card includes a prominent 'Book Now' button styled in the Medical Blue theme.",
-        "Card layout is consistent and readable on mobile, tablet, and desktop viewports.",
-        "Mock data is sourced exclusively from `frontend/src/lib/mockDoctors.ts`."
+        "The screen is accessible via the route `/consultation-type/:doctorId`.",
+        "Three consultation type cards are displayed: Online, Clinic Visit, and Home Visit, each with its emoji icon and a short description.",
+        "Selecting a card visually highlights it (active state) and deselects the previously selected card.",
+        "Only one consultation type can be active at a time.",
+        "The screen follows the Medical Blue theme consistently."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/DoctorCard.tsx",
+          "path": "frontend/src/pages/ConsultationTypePage.tsx",
+          "operation": "create",
+          "description": "Create a new page component that renders the consultation type selection screen. Display three selectable consultation type cards (💻 Online with description 'Video call with doctor', 🏥 Clinic Visit with description 'Visit doctor at clinic', 🏠 Home Visit with description 'Doctor visits your home'). Use useState to manage the selected consultation type. Apply active/inactive styling using the Medical Blue theme colors (brand-primary, brand-secondary). Ensure only one card can be selected at a time. Extract doctorId from route params using useParams."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Expand the DoctorCard component to display all required doctor fields. Add a profile photo/avatar section at the top using an img element with fallback to a placeholder icon when no photo is available. Display the doctor's full name as a prominent heading, followed by qualification (e.g., MBBS, MD) and specialty on separate lines. Show years of experience with an appropriate label. Render the star rating using both numeric value (e.g., 4.5) and star icons (filled/half-filled based on rating). Display the starting consultation fee prominently. Add a consultation modes section showing available modes (Online, Clinic, Home Visit) as small badge components with appropriate icons. Include a prominent 'Book Now' button at the bottom styled with the Medical Blue theme colors (bg-brand-primary text-white). Ensure the card layout uses responsive Tailwind classes (flex/grid) to maintain consistency across mobile, tablet, and desktop viewports. Use the MockDoctor interface from mockDoctors.ts to type the component props correctly."
+          "description": "Register the new route `/consultation-type/:doctorId` in the TanStack Router configuration, mapping it to the ConsultationTypePage component. Place it in the public routes section alongside other consultation-related routes."
         }
       ]
     },
     {
-      "id": "REQ-20",
-      "summary": "Add sorting controls above the doctor card list on DoctorListingPage with four options: Highest Rated, Lowest Fee, Most Experienced, and Available Today, with real-time re-ordering and visual highlighting of the active sort option",
+      "id": "REQ-22",
+      "summary": "Implement automatic fee calculation logic on the consultation type screen with travel fee (Home Visit only), corporate discount (10%), and subscription discount (15%), displaying a detailed fee breakdown summary",
       "acceptanceCriteria": [
-        "A sorting control is visible above the doctor card list on DoctorListingPage.",
-        "The control offers exactly four options: 'Highest Rated', 'Lowest Fee', 'Most Experienced', 'Available Today'.",
-        "The currently active sort option is visually distinct (e.g., filled/highlighted chip) using the Medical Blue theme.",
-        "Selecting 'Highest Rated' reorders cards by descending star rating without a page reload.",
-        "Selecting 'Lowest Fee' reorders cards by ascending starting consultation fee without a page reload.",
-        "Selecting 'Most Experienced' reorders cards by descending years of experience without a page reload.",
-        "Selecting 'Available Today' filters the list to only doctors whose mock availability includes today's day of the week.",
-        "Sorting state is preserved when navigating between specialty filters on the same screen."
+        "Selecting 'Home Visit' adds a ₹200 travel fee line item to the fee breakdown.",
+        "Selecting 'Online' or 'Clinic Visit' does not show a travel fee line item.",
+        "A corporate discount line item (10% off) is shown and applied when the mock corporate flag is true.",
+        "A subscription discount line item (15% off) is shown and applied when the mock subscription flag is true.",
+        "The fee breakdown section shows: Base Fee, Travel Fee (conditional), Corporate Discount (conditional), Subscription Discount (conditional), and Total Payable.",
+        "Total Payable updates in real time when the consultation type is changed.",
+        "Fee breakdown is clearly readable and styled with the Medical Blue theme."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/DoctorListingPage.tsx",
+          "path": "frontend/src/pages/ConsultationTypePage.tsx",
           "operation": "modify",
-          "description": "Add a sorting control section above the doctor card list. Create a state variable using useState to track the currently active sort option (one of: 'highest-rated', 'lowest-fee', 'most-experienced', 'available-today'). Render four clickable chip/button elements for the sort options, styled with Tailwind classes. Apply Medical Blue theme styling (bg-brand-primary text-white) to the active sort option and a neutral style (bg-gray-200 text-gray-700) to inactive options. Implement sorting logic that processes the filtered doctors array based on the active sort: for 'highest-rated', sort by rating descending; for 'lowest-fee', sort by startingFee ascending; for 'most-experienced', sort by experience descending; for 'available-today', filter to only doctors whose availability array includes the current day of the week (use JavaScript's Date.getDay() to get the day index and map it to day names). Apply the sorting logic after the specialty filter but before rendering the doctor cards. Ensure sorting updates the displayed list in real time without page reload by re-rendering the component when the sort state changes. The sorting state persists naturally within the component lifecycle as long as the user stays on the page."
+          "description": "Add fee calculation logic using React state and useEffect. Define mock values: base consultation fee (extract from doctor data or use ₹500 as default), travel fee (₹200), corporate account flag (mock: true/false), subscription flag (mock: true/false). When 'Home Visit' is selected, add travel fee to base fee. Apply 10% corporate discount if corporate flag is true (on the running total). Apply 15% subscription discount if subscription flag is true (on the discounted price, sequentially). Display a fee breakdown section below the consultation type cards showing: Base Fee, Travel Fee (only for Home Visit), Corporate Discount (if applicable, show percentage and amount), Subscription Discount (if applicable, show percentage and amount), and Total Payable. Use the Medical Blue theme for the breakdown section styling. Recalculate and update the breakdown whenever the selected consultation type changes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "summary": "Add a 'Continue' button at the bottom of the consultation type screen that is disabled until a type is selected and navigates to the slot selection page with consultation type and total fee parameters",
+      "acceptanceCriteria": [
+        "A 'Continue' button is displayed at the bottom of the screen.",
+        "The button is visually disabled when no consultation type is selected.",
+        "The button becomes active once a consultation type is selected.",
+        "Clicking 'Continue' navigates the user to the slot selection step, passing the selected consultation type and total fee as parameters.",
+        "The button is styled in the Medical Blue theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ConsultationTypePage.tsx",
+          "operation": "modify",
+          "description": "Add a prominent 'Continue' button at the bottom of the page styled with the Medical Blue theme (bg-brand-primary, hover:bg-brand-secondary, text-white). Disable the button (opacity-50, cursor-not-allowed) when no consultation type is selected. Enable the button when a consultation type is selected. On click, use React Router's navigate function to navigate to `/book-slot/:doctorId`, passing the selected consultation type and calculated total fee as query parameters (e.g., ?type=online&fee=425). Ensure the button is clearly visible and accessible."
+        }
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "summary": "Update the 'Book Appointment' button on the Doctor Profile screen to navigate to the new 'Choose Consultation Type' screen instead of any previous destination",
+      "acceptanceCriteria": [
+        "Clicking 'Book Appointment' on any Doctor Profile screen navigates to `/consultation-type/:doctorId` with the correct doctorId.",
+        "The navigation does not produce any console errors or missing-route warnings.",
+        "The route `/consultation-type/:doctorId` is registered in the root router configuration (`frontend/src/App.tsx`)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PublicDoctorProfilePage.tsx",
+          "operation": "modify",
+          "description": "Locate the 'Book Appointment' button in the PublicDoctorProfilePage component. Update its onClick handler to navigate to `/consultation-type/:doctorId` using React Router's navigate function, passing the doctorId from the current route params. Remove any previous navigation destination. Ensure the button click triggers the navigation without console errors."
         }
       ]
     }

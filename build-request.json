@@ -1,66 +1,110 @@
 {
   "kind": "build_request",
-  "title": "Doctor Listing Screen — Full Card Fields + Sorting Controls",
+  "title": "Choose Consultation Type Screen with Fee & Discount Logic",
   "projectName": "Jeevan HealthCare",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-19",
-      "text": "Update the Doctor Listing Screen (`frontend/src/pages/DoctorListingPage.tsx`) so that each doctor card displays all of the following fields: doctor photo (avatar/placeholder if no image), full name, qualification (e.g., MBBS, MD), specialty, years of experience, star rating (numeric value + star icons), starting consultation fee, available consultation modes (Online / Clinic / Home Visit) as small badge icons, and a prominent 'Book Now' button styled in the Medical Blue theme. The card layout must be clean, readable, and consistent across all viewport sizes. Reuse the shared mock doctor dataset from `frontend/src/lib/mockDoctors.ts` as the single source of truth.",
+      "id": "REQ-21",
+      "text": "Create a 'Choose Consultation Type' screen (route: `/consultation-type/:doctorId`) that is navigated to when the user clicks 'Book Appointment' on the Doctor Profile screen. The screen must display three selectable consultation type cards: 💻 Online, 🏥 Clinic Visit, and 🏠 Home Visit. Only one type may be selected at a time. Each card must display the consultation type label, its icon, and a brief description (e.g., 'Video call with doctor', 'Visit doctor at clinic', 'Doctor visits your home'). Styling must follow the existing Medical Blue theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Each doctor card shows: Photo, Name, Qualification, Experience, Rating, Starting Fee, Available Modes, Book Button"
+          "Choose Consultation Type",
+          "User selects:",
+          "💻 Online",
+          "🏥 Clinic",
+          "🏠 Home Visit"
         ]
       },
       "acceptanceCriteria": [
-        "Each doctor card on DoctorListingPage renders a photo or avatar placeholder when no image is available.",
-        "Each card shows the doctor's full name, qualification (e.g., MBBS, MD), specialty, and years of experience.",
-        "Each card shows a star rating with both a numeric value and star icons.",
-        "Each card shows the starting consultation fee.",
-        "Each card shows available consultation modes (Online / Clinic / Home Visit) as small badge icons.",
-        "Each card includes a prominent 'Book Now' button styled in the Medical Blue theme.",
-        "Card layout is consistent and readable on mobile, tablet, and desktop viewports.",
-        "Mock data is sourced exclusively from `frontend/src/lib/mockDoctors.ts`."
+        "The screen is accessible via the route `/consultation-type/:doctorId`.",
+        "Three consultation type cards are displayed: Online, Clinic Visit, and Home Visit, each with its emoji icon and a short description.",
+        "Selecting a card visually highlights it (active state) and deselects the previously selected card.",
+        "Only one consultation type can be active at a time.",
+        "The screen follows the Medical Blue theme consistently."
       ]
     },
     {
-      "id": "REQ-20",
-      "text": "Add a sorting control above the doctor card list on the Doctor Listing Screen (`frontend/src/pages/DoctorListingPage.tsx`). The control must offer four sort options: 'Highest Rated', 'Lowest Fee', 'Most Experienced', and 'Available Today'. The active sort option must be visually highlighted using the Medical Blue theme. When a sort option is selected, the doctor card list must re-order in real time without a page reload. 'Available Today' must filter the list to only show doctors whose mock availability includes the current day of the week.",
+      "id": "REQ-22",
+      "text": "On the 'Choose Consultation Type' screen, implement automatic fee calculation logic: (1) When 'Home Visit' is selected, add a travel fee (mock value: ₹200) to the base consultation fee and display it as a line item labelled 'Travel Fee'. (2) When any type is selected, check for and apply a corporate discount (mock: 10% off) if the user has a corporate account, displaying the discount as a line item labelled 'Corporate Discount'. (3) Check for and apply a subscription discount (mock: 15% off) if the user has an active subscription, displaying it as a line item labelled 'Subscription Discount'. Display a fee breakdown summary below the type cards showing: Base Fee, Travel Fee (Home Visit only), Corporate Discount (if applicable), Subscription Discount (if applicable), and Total Payable. Discounts should be applied sequentially on the discounted price. Styling must follow the Medical Blue theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Sorting: Highest Rated, Lowest Fee, Most Experienced, Available Today"
+          "System automatically:",
+          "Adds travel fee (Home Visit)",
+          "Applies corporate discount",
+          "Applies subscription discount"
         ]
       },
       "acceptanceCriteria": [
-        "A sorting control is visible above the doctor card list on DoctorListingPage.",
-        "The control offers exactly four options: 'Highest Rated', 'Lowest Fee', 'Most Experienced', 'Available Today'.",
-        "The currently active sort option is visually distinct (e.g., filled/highlighted chip) using the Medical Blue theme.",
-        "Selecting 'Highest Rated' reorders cards by descending star rating without a page reload.",
-        "Selecting 'Lowest Fee' reorders cards by ascending starting consultation fee without a page reload.",
-        "Selecting 'Most Experienced' reorders cards by descending years of experience without a page reload.",
-        "Selecting 'Available Today' filters the list to only doctors whose mock availability includes today's day of the week.",
-        "Sorting state is preserved when navigating between specialty filters on the same screen."
+        "Selecting 'Home Visit' adds a ₹200 travel fee line item to the fee breakdown.",
+        "Selecting 'Online' or 'Clinic Visit' does not show a travel fee line item.",
+        "A corporate discount line item (10% off) is shown and applied when the mock corporate flag is true.",
+        "A subscription discount line item (15% off) is shown and applied when the mock subscription flag is true.",
+        "The fee breakdown section shows: Base Fee, Travel Fee (conditional), Corporate Discount (conditional), Subscription Discount (conditional), and Total Payable.",
+        "Total Payable updates in real time when the consultation type is changed.",
+        "Fee breakdown is clearly readable and styled with the Medical Blue theme."
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "text": "Add a prominent 'Continue' button at the bottom of the 'Choose Consultation Type' screen, styled in the Medical Blue theme. The button must be disabled until a consultation type is selected. On click, it should navigate the user to the next step in the booking flow (slot selection page at `/book-slot/:doctorId` or equivalent). Pass the selected consultation type and calculated total fee as route/query parameters to the next screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Choose Consultation Type",
+          "💻 Online",
+          "🏥 Clinic",
+          "🏠 Home Visit"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Continue' button is displayed at the bottom of the screen.",
+        "The button is visually disabled when no consultation type is selected.",
+        "The button becomes active once a consultation type is selected.",
+        "Clicking 'Continue' navigates the user to the slot selection step, passing the selected consultation type and total fee as parameters.",
+        "The button is styled in the Medical Blue theme."
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "text": "Update the 'Book Appointment' button on the Doctor Profile screen (`frontend/src/pages/PublicDoctorProfilePage.tsx`) to navigate to the new 'Choose Consultation Type' screen (`/consultation-type/:doctorId`) instead of any previous destination, passing the doctorId as a route parameter.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Choose Consultation Type"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking 'Book Appointment' on any Doctor Profile screen navigates to `/consultation-type/:doctorId` with the correct doctorId.",
+        "The navigation does not produce any console errors or missing-route warnings.",
+        "The route `/consultation-type/:doctorId` is registered in the root router configuration (`frontend/src/App.tsx`)."
       ]
     }
   ],
   "constraints": [
-    "Mock doctor data must remain in `frontend/src/lib/mockDoctors.ts` as the single source of truth — do not duplicate or redefine it inline.",
     "Do not modify any files listed under frontend.immutablePaths.",
-    "All styling must follow the existing Medical Blue theme using the established CSS custom properties and Tailwind tokens."
+    "All fee calculation logic (travel fee, corporate discount, subscription discount) must use mock/static values on the frontend only — no backend changes required for this feature.",
+    "Styling must remain consistent with the existing Medical Blue theme throughout."
   ],
   "nonGoals": [
-    "No backend changes or real doctor data persistence.",
-    "No new routes — this request only updates the existing `/doctor-listing/:specialty` screen.",
-    "No changes to DoctorConsultationPage sorting (already implemented in a prior feature).",
-    "No payment or booking flow implementation in this request."
+    "Real payment processing or Razorpay integration for this screen.",
+    "Real corporate account or subscription status lookup from the backend.",
+    "Building the full slot selection or patient details steps (only navigation to that step is required).",
+    "Geolocation or distance-based travel fee calculation."
   ],
   "imageRequirements": {
     "required": [],

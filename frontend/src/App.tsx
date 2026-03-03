@@ -17,6 +17,7 @@ import HealthPage from './pages/HealthPage';
 import DoctorConsultationPage from './pages/DoctorConsultationPage';
 import DoctorListingPage from './pages/DoctorListingPage';
 import PublicDoctorProfilePage from './pages/PublicDoctorProfilePage';
+import ConsultationTypePage from './pages/ConsultationTypePage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminTestsPage from './pages/admin/AdminTestsPage';
@@ -137,6 +138,12 @@ const publicDoctorProfileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/doctor-profile/$doctorId',
   component: PublicDoctorProfilePage,
+});
+
+const consultationTypeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/consultation-type/$doctorId',
+  component: ConsultationTypePage,
 });
 
 // Admin routes
@@ -290,6 +297,7 @@ const routeTree = rootRoute.addChildren([
   doctorConsultationRoute,
   doctorListingRoute,
   publicDoctorProfileRoute,
+  consultationTypeRoute,
   adminRootRoute.addChildren([
     adminDashboardRoute,
     adminTestsRoute,

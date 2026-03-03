@@ -1,14 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Update the Doctor Listing Screen to display full doctor card details and add real-time sorting controls.
+**Goal:** Add a "Choose Consultation Type" screen to the booking flow, with fee calculation logic and navigation wiring.
 
 **Planned changes:**
-- Update each doctor card on `DoctorListingPage.tsx` to display: photo (or avatar placeholder), full name, qualification, specialty, years of experience, star rating (numeric + icons), starting consultation fee, available consultation modes (Online / Clinic / Home Visit) as badge icons, and a "Book Now" button in the Medical Blue theme.
-- Ensure card layout is responsive and consistent across mobile, tablet, and desktop viewports.
-- Add a sorting control bar above the doctor card list with four options: "Highest Rated", "Lowest Fee", "Most Experienced", and "Available Today".
-- Active sort option is visually highlighted using the Medical Blue theme.
-- Sorting and filtering update the card list in real time without a page reload; "Available Today" filters by the current day of the week from mock availability data.
-- All doctor data sourced exclusively from `frontend/src/lib/mockDoctors.ts`.
+- Create a new screen at `/consultation-type/:doctorId` with three selectable cards: 💻 Online, 🏥 Clinic Visit, and 🏠 Home Visit (only one selectable at a time, Medical Blue theme).
+- Each card shows the consultation type label, emoji icon, and a brief description.
+- Implement fee breakdown below the cards: Base Fee, Travel Fee (₹200, Home Visit only), Corporate Discount (10% off, mock flag), Subscription Discount (15% off, mock flag), and Total Payable — updated in real time when the type changes.
+- Add a "Continue" button at the bottom, disabled until a type is selected; on click, navigate to `/book-slot/:doctorId` passing selected consultation type and total fee as route/query parameters.
+- Update the "Book Appointment" button on the Doctor Profile screen (`PublicDoctorProfilePage.tsx`) to navigate to `/consultation-type/:doctorId`.
+- Register the `/consultation-type/:doctorId` route in the root router (`App.tsx`).
 
-**User-visible outcome:** Users browsing the Doctor Listing Screen see rich doctor cards with all key details and can instantly sort/filter the list by rating, fee, experience, or today's availability.
+**User-visible outcome:** Users can click "Book Appointment" on a doctor's profile, choose a consultation type (Online, Clinic, or Home Visit), see an auto-calculated fee breakdown with applicable discounts, and proceed to slot selection.

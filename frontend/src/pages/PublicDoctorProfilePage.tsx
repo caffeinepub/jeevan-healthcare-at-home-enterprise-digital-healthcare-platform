@@ -317,10 +317,10 @@ export default function PublicDoctorProfilePage() {
                 </div>
               </div>
 
-              {/* Book Appointment Button */}
+              {/* Book Appointment Button — navigates to consultation type selection */}
               <Button
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl h-12 text-base shadow-md"
-                onClick={() => navigate({ to: '/booking' })}
+                onClick={() => navigate({ to: `/consultation-type/${doctorId}` })}
               >
                 <CalendarCheck className="w-5 h-5 mr-2" />
                 Book Appointment
